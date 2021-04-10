@@ -17,7 +17,20 @@ public class Maths implements IMaths {
 
 	@Override
 	public int multiplication(int a, int b) {
-		return a*b;
+		
+		 int resultat = 0;
+		 
+		 if (a < b) { 
+			 for (int i=0; i < a; i++) { 
+				 resultat = addition(resultat, b); 
+				 }
+		 } else { 
+			 for (int i=0; i < b; i++) { 
+				 resultat = addition(resultat, a); }
+			 }
+		  
+		 return resultat;
+		 
 	}
 
 	@Override
