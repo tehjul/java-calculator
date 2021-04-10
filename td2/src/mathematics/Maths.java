@@ -21,11 +21,11 @@ public class Maths implements IMaths {
 		 int resultat = 0;
 		 
 		 if (a < b) { 
-			 for (int i=0; i < a; i++) { 
+			 for (int i=0; i < Math.abs(a); i++) { 
 				 resultat = addition(resultat, b); 
 				 }
 		 } else { 
-			 for (int i=0; i < b; i++) { 
+			 for (int i=0; i < Math.abs(b); i++) { 
 				 resultat = addition(resultat, a); }
 			 }
 		  
