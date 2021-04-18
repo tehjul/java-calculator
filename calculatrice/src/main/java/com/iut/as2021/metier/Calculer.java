@@ -2,6 +2,7 @@ package com.iut.as2021.metier;
 
 import com.iut.as2021.exceptions.MathsExceptions;
 import com.iut.as2021.interfaces.IMaths;
+import com.iut.as2021.tools.IutTools;
 
 public class Calculer {
 
@@ -57,8 +58,8 @@ public class Calculer {
 			pos = posSigneSoustraction;
 		}
 		// ------------------------------ CODE TRES DIRTY
-		String left = getLeftExpression(expression, pos);
-		String right = getRightExpression(expression, pos);
+		String left = IutTools.getLeftExpression(expression, pos);
+		String right = IutTools.getRightExpression(expression, pos);
 		if (addition) {
 			double resultat = maths.addition(Integer.valueOf(left), Integer.valueOf(right));
 			return resultat;
@@ -67,14 +68,6 @@ public class Calculer {
 			return maths.soustration(Integer.valueOf(left), Integer.valueOf(right));
 		}
 		return maths.multiplication(1, 2);
-	}
-
-	private String getRightExpression(String expression, int posSigneAddition) {
-		return expression.substring(posSigneAddition + 1).trim();
-	}
-
-	private String getLeftExpression(String expression, int posSigneAddition) {
-		return expression.substring(0, posSigneAddition).trim();
 	}
 
 }
