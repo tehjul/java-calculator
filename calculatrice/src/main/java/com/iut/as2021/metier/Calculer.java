@@ -36,38 +36,10 @@ public class Calculer {
 	}
 
 	public double calc(String str) throws MathsExceptions {
-		int sum = 0;
-		int lastApplyOpRes = 0;
 		double result = 0;
-		int lastNum = 0;
-		int len = str.length();
-		char prevOperator = '+';
 
-		for (int i = 0; i < len; i++) {
-			char c = str.charAt(i);
 
-			if (c >= '0' && c <= '9') {
-				lastNum = lastNum * 10 + c - '0';
-				continue;
-			}
-
-			result = applyOperator(prevOperator, lastApplyOpRes , lastNum);
-			lastNum = 0;
-
-			switch (c) {
-				case '+':
-				case '-':
-					sum += lastApplyOpRes;
-					lastApplyOpRes = 0;
-					break;
-			}
-
-			prevOperator = c;
-		}
-
-		result = applyOperator(prevOperator, lastApplyOpRes , lastNum);
-
-		return sum + result;
+		return result;
 	}
 
 	public double run(String expression) {
