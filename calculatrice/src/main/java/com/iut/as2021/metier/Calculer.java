@@ -1,5 +1,6 @@
 package com.iut.as2021.metier;
 
+import com.iut.as2021.exceptions.MathsExceptions;
 import com.iut.as2021.interfaces.IMaths;
 
 public class Calculer {
@@ -12,6 +13,61 @@ public class Calculer {
 
 	public Calculer(IMaths maths) {
 		this.setMaths(maths);
+	}
+
+	private double applyOperator(char operand, int firstNum, int secondNum) throws MathsExceptions {
+		double result = 0;
+		switch (operand) {
+			case '*':
+				result = maths.multiplication(firstNum, secondNum);
+				break;
+			case '/':
+				result = maths.division(firstNum, secondNum);
+				break;
+			case '+':
+				result = maths.addition(firstNum, secondNum);
+				break;
+			case '-':
+				result = maths.soustration(firstNum, secondNum);
+				break;
+		}
+
+		return result;
+	}
+
+	public double calc(String str) throws MathsExceptions {
+		int sum = 0;
+		int lastApplyOpRes = 0;
+		double result = 0;
+		int lastNum = 0;
+		int len = str.length();
+		char prevOperator = '+';
+
+		for (int i = 0; i < len; i++) {
+			char c = str.charAt(i);
+
+			if (c >= '0' && c <= '9') {
+				lastNum = lastNum * 10 + c - '0';
+				continue;
+			}
+
+			result = applyOperator(prevOperator, lastApplyOpRes , lastNum);
+			lastNum = 0;
+
+			switch (c) {
+				case '+':
+				case '-':
+					sum += lastApplyOpRes;
+					lastApplyOpRes = 0;
+					break;
+			}
+
+			prevOperator = c;
+		}
+
+		result = applyOperator(prevOperator, lastApplyOpRes , lastNum);
+
+		return sum + result;
 	}
 
 	public double run(String expression) {
