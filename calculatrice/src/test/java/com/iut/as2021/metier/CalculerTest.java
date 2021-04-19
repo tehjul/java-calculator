@@ -28,6 +28,16 @@ public class CalculerTest {
 	}
 
 	@Test
+	public void testCasAdditionLongue() throws MathsExceptions {
+		assertEquals(calcul.calc("3 + 4 + 5 + 6"), 18, 1);
+	}
+
+	@Test
+	public void testCasAdditionSoustraction() throws MathsExceptions {
+		assertEquals(calcul.calc("1 + 2 - 3 + 3"), 3, 1);
+	}
+
+	@Test
 	public void testCasSoustractionSimple() {
 		assertEquals(calcul.run("2 - 3"), -1, 1);
 	}

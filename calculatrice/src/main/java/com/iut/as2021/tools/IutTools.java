@@ -19,4 +19,18 @@ public class IutTools {
         }
         return 32;
     }
+
+    public static String getNextInt(String expression, int pos) {
+        String res = "";
+        for (int i = pos; i < expression.length(); i++){
+            char c = expression.charAt(i);
+            if (c == 32 && res != "") {
+                return res;
+            }
+            if (c > 47 && c < 58) {
+                res += c;
+            }
+        }
+        return res;
+    }
 }

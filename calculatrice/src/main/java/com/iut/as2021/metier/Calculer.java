@@ -33,22 +33,25 @@ public class Calculer {
 		return result;
 	}
 
-	public int calc(String str) throws MathsExceptions {
-		int result = 0;
-		int pos = 0;
-		char operand = IutTools.getNextOperand(str, pos);
-		pos = str.indexOf(operand);
-		String left = IutTools.getLeftExpression(str, pos);
-		String right = IutTools.getRightExpression(str, pos);
-		pos = str.indexOf(right);
-		result = applyOperator(operand, Integer.valueOf(left), Integer.valueOf(right));
-		operand = IutTools.getNextOperand(str, pos);
+	public int calc(String str) throws MathsExceptions { 						// "2 + 3"
+		int pos = 0;															// pos = 0
+		char operand = IutTools.getNextOperand(str, pos);						// operand = "+"
+		pos = str.indexOf(operand);												// pos = 2
+		String left = IutTools.getLeftExpression(str, pos);						// left = "2"
+		String right = IutTools.getRightExpression(str, pos);					// right = "3"
+		int result = Integer.valueOf(left);										// result = 2
+																				// operand = "+"
 		while (operand != 32) {
-			pos = str.indexOf(operand);
-			right = IutTools.getRightExpression(str, pos);
-			pos = str.indexOf(right);
-			result = applyOperator(operand, result, Integer.valueOf(right));
-			operand = IutTools.getNextOperand(str, pos);
+			pos = str.indexOf(operand, pos);									// pos = 2
+			System.out.println("je suis dans le while, pos = "+pos);
+			right = IutTools.getNextInt(str, pos);								// right = 3
+			System.out.println("je suis dans le while, right = "+right);
+			result = applyOperator(operand, result, Integer.valueOf(right));	// result = 2 + 3 = 5
+			System.out.println(result);
+			pos += 1;															// pos = 3
+			System.out.println(pos);
+			operand = IutTools.getNextOperand(str, pos);						// operand = "+"
+			System.out.println(operand);
 		}
 
 		return result;
