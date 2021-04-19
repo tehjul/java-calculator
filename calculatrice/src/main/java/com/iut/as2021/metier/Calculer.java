@@ -16,14 +16,11 @@ public class Calculer {
 		this.setMaths(maths);
 	}
 
-	private double applyOperator(char operand, int firstNum, int secondNum) throws MathsExceptions {
-		double result = 0;
+	private int applyOperator(char operand, int firstNum, int secondNum) throws MathsExceptions {
+		int result = 0;
 		switch (operand) {
 			case '*':
 				result = maths.multiplication(firstNum, secondNum);
-				break;
-			case '/':
-				result = maths.division(firstNum, secondNum);
 				break;
 			case '+':
 				result = maths.addition(firstNum, secondNum);
@@ -36,9 +33,23 @@ public class Calculer {
 		return result;
 	}
 
-	public double calc(String str) throws MathsExceptions {
-		double result = 0;
-
+	public int calc(String str) throws MathsExceptions {
+		int result = 0;
+		int pos = 0;
+		char operand = IutTools.getNextOperand(str, pos);
+		pos = str.indexOf(operand);
+		String left = IutTools.getLeftExpression(str, pos);
+		String right = IutTools.getRightExpression(str, pos);
+		pos = str.indexOf(right);
+		result = applyOperator(operand, Integer.valueOf(left), Integer.valueOf(right));
+		operand = IutTools.getNextOperand(str, pos);
+		while (operand != 32) {
+			pos = str.indexOf(operand);
+			right = IutTools.getRightExpression(str, pos);
+			pos = str.indexOf(right);
+			result = applyOperator(operand, result, Integer.valueOf(right));
+			operand = IutTools.getNextOperand(str, pos);
+		}
 
 		return result;
 	}

@@ -3,6 +3,7 @@ package com.iut.as2021.metier;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.anyInt;
 
+import com.iut.as2021.exceptions.MathsExceptions;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -22,8 +23,8 @@ public class CalculerTest {
 	}
 
 	@Test
-	public void testCasAdditionSimple() {
-		assertEquals(calcul.run("2 + 3"), 5, 1);
+	public void testCasAdditionSimple() throws MathsExceptions {
+		assertEquals(calcul.calc("2 + 3"), 5, 1);
 	}
 
 	@Test
