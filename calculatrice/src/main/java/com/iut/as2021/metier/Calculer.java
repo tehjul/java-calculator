@@ -33,18 +33,21 @@ public class Calculer {
 		return result;
 	}
 
+	// "3 + 4 + 5 + 6"
 	public double run(String expression) throws MathsExceptions {
 		int pos = 0;
+		String right;
 		char operand = IutTools.getNextOperand(expression, pos);
 		pos = expression.indexOf(operand);
 		String left = IutTools.getLeftExpression(expression, pos);
-		String right = IutTools.getRightExpression(expression, pos);
 		int result = Integer.valueOf(left);
+		System.out.println("premier result = " + result);
 
 		while (operand != 32) {
 			pos = expression.indexOf(operand, pos);
 			right = IutTools.getNextInt(expression, pos);
 			result = applyOperator(operand, result, Integer.valueOf(right));
+			System.out.println("result du while = " + result);
 			pos += 1;
 			operand = IutTools.getNextOperand(expression, pos);
 		}
