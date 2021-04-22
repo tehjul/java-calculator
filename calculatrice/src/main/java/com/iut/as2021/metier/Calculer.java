@@ -33,55 +33,22 @@ public class Calculer {
 		return result;
 	}
 
-	public int calc(String str) throws MathsExceptions { 						// "2 + 3"
-		int pos = 0;															// pos = 0
-		char operand = IutTools.getNextOperand(str, pos);						// operand = "+"
-		pos = str.indexOf(operand);												// pos = 2
-		String left = IutTools.getLeftExpression(str, pos);						// left = "2"
-		String right = IutTools.getRightExpression(str, pos);					// right = "3"
-		int result = Integer.valueOf(left);										// result = 2
-																				// operand = "+"
+	public double run(String expression) throws MathsExceptions {
+		int pos = 0;
+		char operand = IutTools.getNextOperand(expression, pos);
+		pos = expression.indexOf(operand);
+		String left = IutTools.getLeftExpression(expression, pos);
+		String right = IutTools.getRightExpression(expression, pos);
+		int result = Integer.valueOf(left);
+
 		while (operand != 32) {
-			pos = str.indexOf(operand, pos);									// pos = 2
-			System.out.println("je suis dans le while, pos = "+pos);
-			right = IutTools.getNextInt(str, pos);								// right = 3
-			System.out.println("je suis dans le while, right = "+right);
-			result = applyOperator(operand, result, Integer.valueOf(right));	// result = 2 + 3 = 5
-			System.out.println(result);
-			pos += 1;															// pos = 3
-			System.out.println(pos);
-			operand = IutTools.getNextOperand(str, pos);						// operand = "+"
-			System.out.println(operand);
+			pos = expression.indexOf(operand, pos);
+			right = IutTools.getNextInt(expression, pos);
+			result = applyOperator(operand, result, Integer.valueOf(right));
+			pos += 1;
+			operand = IutTools.getNextOperand(expression, pos);
 		}
 
 		return result;
-	}
 
-	public double run(String expression) {
-		int pos = 0;
-		// ----------------------------------------------
-		int posSigneAddition = expression.indexOf("+");
-		boolean addition = (posSigneAddition > 0);
-		if (addition) {
-			pos = posSigneAddition;
-		}
-		// ------------------------------ CODE TRES DIRTY
-		int posSigneSoustraction = expression.indexOf("-");
-		boolean soustraction = (posSigneSoustraction > 0);
-		if (soustraction) {
-			pos = posSigneSoustraction;
-		}
-		// ------------------------------ CODE TRES DIRTY
-		String left = IutTools.getLeftExpression(expression, pos);
-		String right = IutTools.getRightExpression(expression, pos);
-		if (addition) {
-			double resultat = maths.addition(Integer.valueOf(left), Integer.valueOf(right));
-			return resultat;
-		}
-		if (soustraction) {
-			return maths.soustration(Integer.valueOf(left), Integer.valueOf(right));
-		}
-		return maths.multiplication(1, 2);
-	}
-
-}
+} }

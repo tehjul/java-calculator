@@ -24,26 +24,26 @@ public class CalculerTest {
 
 	@Test
 	public void testCasAdditionSimple() throws MathsExceptions {
-		assertEquals(calcul.calc("2 + 3"), 5, 1);
+		assertEquals(calcul.run("2 + 3"), 5, 1);
 	}
 
 	@Test
 	public void testCasAdditionLongue() throws MathsExceptions {
-		assertEquals(calcul.calc("3 + 4 + 5 + 6"), 18, 1);
+		assertEquals(calcul.run("3 + 4 + 5 + 6"), 18, 1);
 	}
 
 	@Test
 	public void testCasAdditionSoustraction() throws MathsExceptions {
-		assertEquals(calcul.calc("1 + 2 - 3 + 3"), 3, 1);
+		assertEquals(calcul.run("1 + 2 - 3 + 3"), 3, 1);
 	}
 
 	@Test
-	public void testCasSoustractionSimple() {
+	public void testCasSoustractionSimple() throws MathsExceptions {
 		assertEquals(calcul.run("2 - 3"), -1, 1);
 	}
 
 	@Test
-	public void testCasMultiplicationSimple() {
+	public void testCasMultiplicationSimple() throws MathsExceptions {
 		calcul.setMaths(mathsMock);
 		Mockito.when(mathsMock.multiplication(anyInt(), anyInt())).thenReturn(6);
 		assertEquals(calcul.run("7 * 1"), 6, 1);
