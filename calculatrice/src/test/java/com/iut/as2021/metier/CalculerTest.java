@@ -26,22 +26,24 @@ public class CalculerTest {
 	public void testCasAdditionSimple() throws MathsExceptions {
 		assertEquals(calcul.run("2 + 3"), 5, 1);
 	}
-
 	@Test
 	public void testCasAdditionLongue() throws MathsExceptions {
 		assertEquals(calcul.run("3 + 4 + 5 + 6"), 18, 1);
 	}
-
 	@Test
 	public void testCasAdditionSoustraction() throws MathsExceptions {
 		assertEquals(calcul.run("1 + 2 - 3 + 3"), 3, 1);
 	}
 
 	@Test
+	public void testCasAdditionProf() throws MathsExceptions {
+		assertEquals(calcul.run("1 + 2 - 2 + 1 + 3"), 5, 1);
+	}
+
+	@Test
 	public void testCasSoustractionSimple() throws MathsExceptions {
 		assertEquals(calcul.run("2 - 3"), -1, 1);
 	}
-
 	@Test
 	public void testCasMultiplicationSimple() throws MathsExceptions {
 		calcul.setMaths(mathsMock);

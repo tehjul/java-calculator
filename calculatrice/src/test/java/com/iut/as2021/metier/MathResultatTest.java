@@ -47,6 +47,12 @@ public class MathResultatTest {
     }
 
     @Test
+    public void testCasAdditionProf() throws MathsExceptions {
+        resultat = new MathResultat("1 + 2 * 3 - 1");
+        assertEquals(resultat.calculate(), 6, 1);
+    }
+
+    @Test
     public void testExpressionSimpleDivision() throws MathsExceptions {
         resultat = new MathResultat("8 / 2");
         assertEquals(resultat.calculate(), 4, 2);

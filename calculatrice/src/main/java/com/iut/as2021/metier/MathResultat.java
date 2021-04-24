@@ -18,6 +18,8 @@ import com.iut.as2021.tools.IutTools;
  * @author stephane.joyeux
  *
  */
+
+// resultat = new MathResultat("7 - 3 + 1");
 public class MathResultat {
 
     private EOperation operation;
@@ -61,16 +63,16 @@ public class MathResultat {
     protected double calculate() throws MathsExceptions {
         if (!INCONNUE.equals(operation)) {
             double leftValue = leftExpression.getValue();
-            double rigthValue = rightExpression.getValue();
+            double rightValue = rightExpression.getValue();
             switch (operation) {
                 case MULTIPLICATION:
-                    return maths.multiplication((int) leftValue, (int) rigthValue);
+                    return maths.multiplication((int) leftValue, (int) rightValue);
                 case DIVISION:
-                    return maths.division((int) leftValue, (int) rigthValue);
+                    return maths.division((int) leftValue, (int) rightValue);
                 case ADDITION:
-                    return maths.addition((int) leftValue, (int) rigthValue);
+                    return maths.addition((int) leftValue, (int) rightValue);
                 case SOUSTRACTION:
-                    return maths.soustration((int) leftValue, (int) rigthValue);
+                    return maths.soustration((int) leftValue, (int) rightValue);
                 default:
                     return 0;
             }
