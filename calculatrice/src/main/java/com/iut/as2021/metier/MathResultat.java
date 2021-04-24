@@ -1,11 +1,16 @@
 package com.iut.as2021.metier;
 
+import static com.iut.as2021.enumerations.EOperation.ADDITION;
+import static com.iut.as2021.enumerations.EOperation.DIVISION;
+import static com.iut.as2021.enumerations.EOperation.INCONNUE;
+import static com.iut.as2021.enumerations.EOperation.MULTIPLICATION;
+import static com.iut.as2021.enumerations.EOperation.SOUSTRACTION;
+
 import com.iut.as2021.enumerations.EOperation;
 import com.iut.as2021.exceptions.MathsExceptions;
 import com.iut.as2021.interfaces.IMaths;
 import com.iut.as2021.mathematics.Maths;
-
-import static com.iut.as2021.enumerations.EOperation.*;
+import com.iut.as2021.tools.IutTools;
 
 /**
  * Classe récursive permettant de créer un arbre binaire d'opérations.
@@ -13,8 +18,8 @@ import static com.iut.as2021.enumerations.EOperation.*;
  * @author stephane.joyeux
  *
  */
-
 public class MathResultat {
+
     private EOperation operation;
     private IMaths maths;
 
@@ -43,7 +48,10 @@ public class MathResultat {
         return rightExpression;
     }
 
-    public MathResultat(String expression) {
+    public MathResultat(String expression) throws MathsExceptions {
+        if (expression == null || expression.isEmpty()) {
+            throw new MathsExceptions("Expression est vide");
+        }
         this.operation = INCONNUE;
         this.expression = expression;
         switchLeftAndRightExpression();
@@ -70,11 +78,11 @@ public class MathResultat {
         return 0;
     }
 
-    private void switchLeftAndRightExpression() {
+    private void switchLeftAndRightExpression() throws MathsExceptions {
         int pos = getPosition();
         if (!INCONNUE.equals(operation) && pos > 0) {
-            leftExpression = new MathResultat(getLeftExpression(expression, pos));
-            rightExpression = new MathResultat(getRightExpression(expression, pos));
+            leftExpression = new MathResultat(IutTools.getLeftExpression(expression, pos));
+            rightExpression = new MathResultat(IutTools.getRightExpression(expression, pos));
         }
     }
 
@@ -99,13 +107,5 @@ public class MathResultat {
             return pos;
         }
         return 0;
-    }
-
-    private String getLeftExpression(String expression, int pos) {
-        return expression.substring(0, pos).trim();
-    }
-
-    private String getRightExpression(String expression, int pos) {
-        return expression.substring(pos + 1).trim();
     }
 }

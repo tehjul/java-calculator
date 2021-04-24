@@ -1,6 +1,7 @@
 package com.iut.as2021.enumerations;
 
 public enum EOperation {
+
     INCONNUE(0, ""),
     ADDITION(1, "+"),
     SOUSTRACTION(2, "-"),
