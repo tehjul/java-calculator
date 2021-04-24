@@ -55,14 +55,14 @@ public class MathResultat {
             double leftValue = leftExpression.getValue();
             double rigthValue = rightExpression.getValue();
             switch (operation) {
-                case ADDITION:
-                    return maths.addition((int) leftValue, (int) rigthValue);
-                case SOUSTRACTION:
-                    return maths.soustration((int) leftValue, (int) rigthValue);
                 case MULTIPLICATION:
                     return maths.multiplication((int) leftValue, (int) rigthValue);
                 case DIVISION:
                     return maths.division((int) leftValue, (int) rigthValue);
+                case ADDITION:
+                    return maths.addition((int) leftValue, (int) rigthValue);
+                case SOUSTRACTION:
+                    return maths.soustration((int) leftValue, (int) rigthValue);
                 default:
                     return 0;
             }
