@@ -30,8 +30,24 @@ public class MySqlDAO implements IDaoMathResult {
 
     @Override
     public List<MathResultat> getAll() {
-        // TODO Auto-generated method stub
-        return null;
+        ArrayList<Etudiant> liste = new ArrayList<>();
+
+        ArrayList<Promotion> listePromos = MySQLPromotionDAO.getInstance().findAll();
+
+        String sql = "select * from etudiant";
+        Connection co = Connexion.getInstance().getConnexion();
+
+        Statement requete = co.createStatement();
+        ResultSet res = requete.executeQuery(sql);
+        while (res.next()) {
+            Etudiant e = new Etudiant(res.getInt("id_etudiant"), res.getString("ine_etudiant"), res.getString("nom_etudiant"), res.getString("prenom_etudiant"));
+            Promotion p = new Promotion(res.getInt("id_promotion"), "xxx");
+            int idx = listePromos.indexOf(p);
+            e.setPromotion(listePromos.get(idx));
+            liste.add(e);
+        }
+
+        return liste;
     }
 
     @Override
