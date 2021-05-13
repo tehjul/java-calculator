@@ -30,11 +30,11 @@ public class MySqlDAO implements IDaoMathResult {
 
     @Override
     public List<MathResultat> getAll() {
-        ArrayList<Etudiant> liste = new ArrayList<>();
+        List<MathResultat> liste = new List<>();
 
-        ArrayList<Promotion> listePromos = MySQLPromotionDAO.getInstance().findAll();
+        List<MathResultat> listePromos = MySQLPromotionDAO.getInstance().findAll();
 
-        String sql = "select * from etudiant";
+        String sql = "select * from calculatrice";
         Connection co = Connexion.getInstance().getConnexion();
 
         Statement requete = co.createStatement();
