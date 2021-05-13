@@ -20,5 +20,5 @@ public interface IDaoMathResult extends IDao<MathResultat> {
     boolean create(MathResultat object);
 
     @Override
-    boolean delete(MathResultat object);
+    boolean delete(MathResultat object) throws SQLException, ClassNotFoundException;
 }

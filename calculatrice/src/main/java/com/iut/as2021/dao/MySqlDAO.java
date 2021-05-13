@@ -47,9 +47,15 @@ public class MySqlDAO implements IDaoMathResult {
     }
 
     @Override
-    public boolean delete(MathResultat object) {
-        // TODO Auto-generated method stub
-        return false;
+    public boolean delete(MathResultat object) throws SQLException, ClassNotFoundException {
+        String sql = "delete from calculatrice where expression=?";
+
+        Connection co = MySqlConnexion.getInstance();
+        PreparedStatement requete = co.prepareStatement(sql);
+        requete.setString(1, object.getExpression());
+        int nbLignes = requete.executeUpdate();
+
+        return (nbLignes==1);
     }
 
 }

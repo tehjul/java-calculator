@@ -15,6 +15,6 @@ public interface IDao<T> {
 
     boolean create(T object);
 
-    boolean delete(T object);
+    boolean delete(T object) throws SQLException, ClassNotFoundException;
 
 }

@@ -20,9 +20,14 @@ public class MathResultat {
 
     private EOperation operation;
     private IMaths maths;
+
     private String expression;
     private MathResultat leftExpression;
     private MathResultat rightExpression;
+
+    public String getExpression() {
+        return expression;
+    }
 
     public EOperation getOperation() {
         return operation;
