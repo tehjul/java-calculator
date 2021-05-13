@@ -1,16 +1,12 @@
 package com.iut.as2021.metier;
 
-import static com.iut.as2021.enumerations.EOperation.ADDITION;
-import static com.iut.as2021.enumerations.EOperation.DIVISION;
-import static com.iut.as2021.enumerations.EOperation.INCONNUE;
-import static com.iut.as2021.enumerations.EOperation.MULTIPLICATION;
-import static com.iut.as2021.enumerations.EOperation.SOUSTRACTION;
-
 import com.iut.as2021.enumerations.EOperation;
 import com.iut.as2021.exceptions.MathsExceptions;
 import com.iut.as2021.interfaces.IMaths;
 import com.iut.as2021.mathematics.Maths;
 import com.iut.as2021.tools.IutTools;
+
+import static com.iut.as2021.enumerations.EOperation.*;
 
 /**
  * Classe récursive permettant de créer un arbre binaire d'opérations.
@@ -24,11 +20,8 @@ public class MathResultat {
 
     private EOperation operation;
     private IMaths maths;
-
     private String expression;
-
     private MathResultat leftExpression;
-
     private MathResultat rightExpression;
 
     public EOperation getOperation() {
@@ -39,6 +32,7 @@ public class MathResultat {
         if (INCONNUE.equals(operation)) {
             return Integer.valueOf(expression);
         }
+        System.out.println("recursive");
         return calculate();
     }
 
@@ -56,6 +50,7 @@ public class MathResultat {
         }
         this.operation = INCONNUE;
         this.expression = expression;
+        System.out.println("dans constructeur, expression = " + expression);
         switchLeftAndRightExpression();
         this.maths = new Maths();
     }
@@ -66,12 +61,16 @@ public class MathResultat {
             double rightValue = rightExpression.getValue();
             switch (operation) {
                 case MULTIPLICATION:
+                    System.out.println("je fais la multi de " + leftValue + " et " + rightValue);
                     return maths.multiplication((int) leftValue, (int) rightValue);
                 case DIVISION:
+                    System.out.println("je fais la division de " + leftValue + " et " + rightValue);
                     return maths.division((int) leftValue, (int) rightValue);
                 case ADDITION:
+                    System.out.println("je fais l'addition de " + leftValue + " et " + rightValue);
                     return maths.addition((int) leftValue, (int) rightValue);
                 case SOUSTRACTION:
+                    System.out.println("je fais la soustrac de " + leftValue + " et " + rightValue);
                     return maths.soustration((int) leftValue, (int) rightValue);
                 default:
                     return 0;

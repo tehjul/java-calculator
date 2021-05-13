@@ -1,5 +1,7 @@
 package com.iut.as2021.tools;
 
+import com.iut.as2021.metier.MathResultat;
+
 public class IutTools {
 
     public static String getLeftExpression(String expression, int pos) {
@@ -7,6 +9,7 @@ public class IutTools {
     }
 
     public static String getRightExpression(String expression, int pos) {
+
         return expression.substring(pos + 1).trim();
     }
 
