@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Connexion {
+public class MySqlConnexion {
     public static Connection instance = null;
 
     private static final String DRIVER_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
@@ -12,7 +12,7 @@ public class Connexion {
     private static final String USER = "sibille33u_appli";
     private static final String PASSWORD = "32004260";
 
-    private Connexion() {
+    private MySqlConnexion() {
     }
 
     public static Connection getInstance() throws SQLException, ClassNotFoundException {

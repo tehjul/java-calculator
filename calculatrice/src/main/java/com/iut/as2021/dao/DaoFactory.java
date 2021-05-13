@@ -6,7 +6,7 @@ public abstract class DaoFactory {
         DaoFactory daoF = null;
         switch (cible) {
             case MYSQL:
-                daoF = new MySQLDaoFactory();
+                daoF = new MySqlDaoFactory();
                 break;
             case XML:
                 daoF = null;

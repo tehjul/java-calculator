@@ -1,6 +1,6 @@
 package com.iut.as2021.dao;
 
-public class MySQLDaoFactory extends DaoFactory {
+public class MySqlDaoFactory extends DaoFactory {
 
     @Override
     public IDaoMathResult getDaoMathResult() {
