@@ -1,12 +1,14 @@
 package com.iut.as2021.dao;
 
+import com.iut.as2021.exceptions.MathsExceptions;
 import com.iut.as2021.metier.MathResultat;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface IDaoMathResult extends IDao<MathResultat> {
     @Override
-    MathResultat readyById(int i);
+    MathResultat readyById(int i) throws SQLException, ClassNotFoundException, MathsExceptions;
 
     @Override
     List<MathResultat> getAll();
