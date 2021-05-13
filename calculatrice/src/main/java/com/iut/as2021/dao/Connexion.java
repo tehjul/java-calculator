@@ -7,8 +7,8 @@ import java.sql.SQLException;
 public class Connexion {
     public static Connection instance = null;
 
-    private static final String DRIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
-    private static final String URL_MYSQL = "jdbc:mysql://devbdd.iutmetz.univ-lorraine.fr:3306/sibille33u_cpoa";
+    private static final String DRIVER_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
+    private static final String URL_MYSQL = "jdbc:mysql://devbdd.iutmetz.univ-lorraine.fr:3306/sibille33u_cpoa?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC";
     private static final String USER = "sibille33u_appli";
     private static final String PASSWORD = "32004260";
 
