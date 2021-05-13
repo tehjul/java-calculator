@@ -12,7 +12,7 @@ import com.iut.as2021.metier.MathResultat;
 public class MySqlDAO implements IDaoMathResult {
 
     @Override
-    public MathResultat readyById(int id) throws SQLException, ClassNotFoundException, MathsExceptions {
+    public MathResultat readById(int id) throws SQLException, ClassNotFoundException, MathsExceptions {
         MathResultat mathresultat = null;
 
         String sql = "select * from calculatrice where id = ?";

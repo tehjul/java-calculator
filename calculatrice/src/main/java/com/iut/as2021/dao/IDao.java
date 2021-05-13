@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IDao<T> {
 
-    T readyById(int i) throws SQLException, ClassNotFoundException, MathsExceptions;
+    T readById(int i) throws SQLException, ClassNotFoundException, MathsExceptions;
 
     List<T> getAll();
 

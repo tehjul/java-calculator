@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface IDaoMathResult extends IDao<MathResultat> {
     @Override
-    MathResultat readyById(int i) throws SQLException, ClassNotFoundException, MathsExceptions;
+    MathResultat readById(int i) throws SQLException, ClassNotFoundException, MathsExceptions;
 
     @Override
     List<MathResultat> getAll();
