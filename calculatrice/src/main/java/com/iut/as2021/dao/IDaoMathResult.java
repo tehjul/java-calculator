@@ -4,6 +4,7 @@ import com.iut.as2021.exceptions.MathsExceptions;
 import com.iut.as2021.metier.MathResultat;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public interface IDaoMathResult extends IDao<MathResultat> {
@@ -11,10 +12,10 @@ public interface IDaoMathResult extends IDao<MathResultat> {
     MathResultat readById(int i) throws SQLException, ClassNotFoundException, MathsExceptions;
 
     @Override
-    List<MathResultat> getAll();
+    ArrayList<MathResultat> getAll() throws SQLException, MathsExceptions;
 
     @Override
-    boolean update(MathResultat object);
+    boolean update(MathResultat object) throws SQLException;
 
     @Override
     boolean create(MathResultat object) throws SQLException, ClassNotFoundException;
