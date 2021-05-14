@@ -116,6 +116,29 @@ public class IutTools {
         return result;
     }
 
+    public static String deleteBetween2Pos(String expression, int pos1, int pos2) throws MathsExceptions{
+        String result = "";
+        for (int i = 0; i < expression.length(); i++){
+            if (i < pos1 || i > pos2){
+                result += expression.charAt(i);
+            }
+        }
+        return result;
+    }
+
+    public static String addToPos(String expression, String exptoadd, int pos) throws MathsExceptions{
+        String result = "";
+        for (int i = 0; i < expression.length(); i++){
+            result += expression.charAt(i);
+            if (i == pos-1){
+                for (int j = 0; j < exptoadd.length(); j++){
+                    result += exptoadd.charAt(j);
+                }
+            }
+        }
+        return result;
+    }
+
 
 }
 

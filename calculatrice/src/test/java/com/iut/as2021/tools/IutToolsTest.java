@@ -41,4 +41,12 @@ public class IutToolsTest extends TestCase {
     public void testDeleteParenthesis() throws MathsExceptions {
         assertEquals(IutTools.deleteParenthesis(test, 0, 6), "2 + 3");
     }
+
+    public void testDeleteBetween2Pos() throws MathsExceptions {
+        assertEquals(IutTools.deleteBetween2Pos(test, 2, 4), "(23)");
+    }
+
+    public void testAddToPos() throws MathsExceptions {
+        assertEquals(IutTools.addToPos(test, "123", 2), "(2123 + 3)");
+    }
 }
