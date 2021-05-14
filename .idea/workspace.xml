@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="320b4793-6f9f-4644-b73e-a5790b5be44d" name="Default Changelist" comment="" />
-=======
-    <list default="true" id="a588c553-43b9-4bca-a4fc-f912da2baec7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/calculatrice/src/main/java/com/iut/as2021/dao/IDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculatrice/src/main/java/com/iut/as2021/dao/IDao.java" afterDir="false" />
+    <list default="true" id="a588c553-43b9-4bca-a4fc-f912da2baec7" name="Default Changelist" comment="MySqlDaoFactory">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calculatrice/src/main/java/com/iut/as2021/dao/MySqlDaoFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculatrice/src/main/java/com/iut/as2021/dao/MySqlDaoFactory.java" afterDir="false" />
     </list>
->>>>>>> origin/main
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,12 +13,8 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-<<<<<<< HEAD
-  <component name="ProjectId" id="1rKiwFlNhtUjuweM840Pbq0Sk34" />
-=======
   <component name="ProjectId" id="1sWjDoomO8B7CbR5GQdZBAxPrRZ" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
->>>>>>> origin/main
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -32,50 +24,22 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-<<<<<<< HEAD
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-  </component>
-  <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-=======
->>>>>>> origin/main
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-<<<<<<< HEAD
-      <changelist id="320b4793-6f9f-4644-b73e-a5790b5be44d" name="Default Changelist" comment="" />
-      <created>1618731420748</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1618731420748</updated>
-      <workItem from="1618731424396" duration="82000" />
-=======
       <changelist id="a588c553-43b9-4bca-a4fc-f912da2baec7" name="Default Changelist" comment="" />
       <created>1620995122975</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1620995122975</updated>
       <workItem from="1620995124463" duration="752000" />
->>>>>>> origin/main
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-<<<<<<< HEAD
-=======
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -87,5 +51,4 @@
       </map>
     </option>
   </component>
->>>>>>> origin/main
 </project>
