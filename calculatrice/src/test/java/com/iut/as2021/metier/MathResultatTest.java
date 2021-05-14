@@ -109,6 +109,15 @@ public class MathResultatTest {
         }
     }
     @Test(expected = MathsExceptions.class)
+    public void testExpressionMalParenthesee2() throws MathsExceptions {
+        try {
+            resultat = new MathResultat("((1 + 2 )");
+        } catch (MathsExceptions e) {
+            assertEquals(e.getMessage(), "Expression mal parenthesée");
+            throw e;
+        }
+    }
+    @Test(expected = MathsExceptions.class)
     public void testExpressionSimpleChaineVide() throws MathsExceptions {
         try {
             resultat = new MathResultat("");
