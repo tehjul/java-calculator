@@ -106,9 +106,15 @@ public class IutTools {
         return new MathResultat(newExpression);
     }
 
-    //public String deleteParenthesis() throws MathsExceptions{
-//
-  //  }
+    public static String deleteParenthesis(String expression, int pos1, int pos2) throws MathsExceptions{
+        String result = "";
+        for (int i = 0; i < expression.length(); i++){
+            if (i != pos1 && i != pos2){
+                result += expression.charAt(i);
+            }
+        }
+        return result;
+    }
 
 
 }

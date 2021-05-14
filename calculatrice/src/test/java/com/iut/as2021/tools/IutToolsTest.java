@@ -38,6 +38,7 @@ public class IutToolsTest extends TestCase {
         assertEquals(IutTools.insideExpression(test).getExpression(), resultat.getExpression());
     }
 
-    public void testDeleteParenthesis() {
+    public void testDeleteParenthesis() throws MathsExceptions {
+        assertEquals(IutTools.deleteParenthesis(test, 0, 6), "2 + 3");
     }
 }
