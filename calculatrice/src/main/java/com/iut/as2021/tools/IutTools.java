@@ -1,5 +1,6 @@
 package com.iut.as2021.tools;
 
+import com.iut.as2021.exceptions.MathsExceptions;
 import com.iut.as2021.metier.MathResultat;
 
 public class IutTools {
@@ -36,4 +37,38 @@ public class IutTools {
         }
         return res;
     }
+
+    public int NbParentheses(String expression) throws MathsExceptions {
+
+        int posOuvrante = 0;
+        int posFermante = 0;
+
+        if(expression.charAt(0) == ')' || expression.charAt(expression.length()-1) == '('){
+            throw new MathsExceptions("erreur expression : placement parenthese");
+        }
+
+        if (expression.equals("()")){
+            throw new MathsExceptions(" erreur expression : vide entre parenthese");
+        }
+
+        for (int i=0; i<expression.length(); i++){
+            if(expression.charAt(i)==')'){
+                posFermante = i;
+            }
+            for (int j = i; j !=0; j--){
+                if(expression.charAt(j)=='('){
+                    posOuvrante = j;
+                }
+            }
+        }
+
+        return 0;
+    }
 }
+
+/*(10+(11+12))
+1- on doit connaitre la première position d'une parenthese fermante (ici 10)
+2- on doit connaitre la derniere position d'une parenthese ouvrante dont la position est inferieur à resultat algo 1 (ici 4)
+3- faire le calcul entre ces deux positions (donc 11+12 = 23)
+4- supprimer les parentheses traités c-à-d position 4 et 10 et on retourne la concatenation du reste avec le resultat entre les prentheses (donc il ne reste que "(10+23)")
+5- appel recursif de la fonction jusqu'a ce qu'il n'y a plus de parenthese*/
