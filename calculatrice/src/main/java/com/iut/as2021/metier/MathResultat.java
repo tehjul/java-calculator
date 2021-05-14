@@ -15,7 +15,6 @@ import static com.iut.as2021.enumerations.EOperation.*;
  *
  */
 
-// resultat = new MathResultat("7 - 3 + 1");
 public class MathResultat {
 
     private EOperation operation;
@@ -67,7 +66,7 @@ public class MathResultat {
         }
 
         this.operation = INCONNUE;
-        this.expression = IutTools.TrimBorderParenthesis(expression);
+        this.expression = expression;
         System.out.println("dans constructeur, expression = " + expression);
         switchLeftAndRightExpression();
         this.maths = new Maths();

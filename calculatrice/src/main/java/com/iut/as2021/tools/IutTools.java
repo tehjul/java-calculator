@@ -60,34 +60,17 @@ public class IutTools {
         return expression;
     }
 
-    public int NbParentheses(String expression) throws MathsExceptions {
-
-        int posOuvrante = 0;
-        int posFermante = 0;
-
-        if(expression.charAt(0) == ')' || expression.charAt(expression.length()-1) == '('){
-            throw new MathsExceptions("erreur expression : placement parenthese");
-        }
-
-        if (expression.equals("()")){
-            throw new MathsExceptions(" erreur expression : vide entre parenthese");
-        }
-
-        for (int i=0; i<expression.length(); i++){
-            if(expression.charAt(i)==')'){
-                posFermante = i;
-            }
-            for (int j = i; j !=0; j--){
-                if(expression.charAt(j)=='('){
-                    posOuvrante = j;
-                }
+    public static int NbParentheses(String expression){
+        int result = 0;
+        for (int i = 0; i < expression.length(); i++){
+            if (expression.charAt(i) == '(' || expression.charAt(i) == ')'){
+                result++;
             }
         }
-
-        return 0;
+        return result;
     }
 
-    public int getFirstClosingParenthesis(String expression) throws MathsExceptions{
+    public static int getFirstClosingParenthesis(String expression) throws MathsExceptions{
         if (!isGoodParenthesis(expression)){
             throw new MathsExceptions("Expression mal parenthesée");
         } else {
@@ -100,7 +83,7 @@ public class IutTools {
         return 0;
     }
 
-    public int getLastOpeningParenthesis(String expression) throws MathsExceptions{
+    public static int getLastOpeningParenthesis(String expression) throws MathsExceptions{
         int last = 0;
         if (!isGoodParenthesis(expression)){
             throw new MathsExceptions("Expression mal parenthesée");
@@ -116,12 +99,16 @@ public class IutTools {
         return last;
     }
 
-    public MathResultat insideExpression(String expression) throws MathsExceptions {
+    public static MathResultat insideExpression(String expression) throws MathsExceptions {
         int closingpos = getFirstClosingParenthesis(expression);
         int openingpos = getLastOpeningParenthesis(expression);
-        String newexpression = expression.substring(openingpos, closingpos);
-        return new MathResultat(newexpression);
+        String newExpression = expression.substring(openingpos+1, closingpos);
+        return new MathResultat(newExpression);
     }
+
+    //public String deleteParenthesis() throws MathsExceptions{
+//
+  //  }
 
 
 }
