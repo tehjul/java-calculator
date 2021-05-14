@@ -9,6 +9,8 @@ public interface IDao<T> {
 
     T readById(int i) throws SQLException, ClassNotFoundException, MathsExceptions;
 
+    T getlasdt() throws Exception;
+
     List<T> getAll();
 
     boolean update(T object);
