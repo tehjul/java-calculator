@@ -16,6 +16,16 @@ public class MathResultatTest {
         assertEquals(resultat.calculate(), 5, 2);
     }
     @Test
+    public void testExpressionSimpleAdditionParentheses() throws MathsExceptions {
+        resultat = new MathResultat("(2 + 3)");
+        assertEquals(resultat.calculate(), 5, 2);
+    }
+    @Test
+    public void testExpressionSimpleAdditionParenthesesMultiples() throws MathsExceptions {
+        resultat = new MathResultat("(((((2 + 3)))))");
+        assertEquals(resultat.calculate(), 5, 2);
+    }
+    @Test
     public void testExpressionDeuxChiffresAddition() throws MathsExceptions {
         resultat = new MathResultat("20 + 30");
         assertEquals(resultat.calculate(), 50, 2);
@@ -68,13 +78,11 @@ public class MathResultatTest {
         resultat = new MathResultat("1 + 2 * 3 - 1");
         assertEquals(resultat.calculate(), 6, 1);
     }
-
     @Test
     public void testCasDeuxMultiplications() throws MathsExceptions {
         resultat = new MathResultat("1 + 2 * 3 - 1 + 3 * 3 - 8");
         assertEquals(resultat.calculate(), 7, 1);
     }
-
     @Test
     public void testCasParentheses() throws MathsExceptions {
         resultat = new MathResultat("(2 + 3) * 5");
@@ -88,6 +96,15 @@ public class MathResultatTest {
             resultat = new MathResultat(null);
         } catch (MathsExceptions e) {
             assertEquals(e.getMessage(), "Expression est vide");
+            throw e;
+        }
+    }
+    @Test(expected = MathsExceptions.class)
+    public void testExpressionMalParenthesee() throws MathsExceptions {
+        try {
+            resultat = new MathResultat("(1 + 2 ))");
+        } catch (MathsExceptions e) {
+            assertEquals(e.getMessage(), "Expression mal parenthesée");
             throw e;
         }
     }

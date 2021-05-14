@@ -62,8 +62,12 @@ public class MathResultat {
         if (expression == null || expression.isEmpty()) {
             throw new MathsExceptions("Expression est vide");
         }
+        if (!IutTools.isGoodParenthesis(expression)){
+            throw new MathsExceptions("Expression mal parenthesée");
+        }
+
         this.operation = INCONNUE;
-        this.expression = expression;
+        this.expression = IutTools.TrimBorderParenthesis(expression);
         System.out.println("dans constructeur, expression = " + expression);
         switchLeftAndRightExpression();
         this.maths = new Maths();

@@ -38,6 +38,28 @@ public class IutTools {
         return res;
     }
 
+    public static boolean isGoodParenthesis(String expression){
+        int index = 0;
+
+        for (int i = 0; i < expression.length(); i++){
+            if (expression.charAt(i) == '(') {
+                System.out.println("J'ai une ouvrante");
+                index++;
+            } else if (expression.charAt(i) == ')') {
+                System.out.println("J'ai une fermante");
+                index--;
+            }
+        }
+        return index == 0;
+    }
+
+    public static String TrimBorderParenthesis(String expression){
+        if (expression.charAt(0) == '(' && expression.charAt(expression.length()-1) == ')'){
+            return TrimBorderParenthesis(expression.substring(1, expression.length()-1).trim());
+        }
+        return expression;
+    }
+
     public int NbParentheses(String expression) throws MathsExceptions {
 
         int posOuvrante = 0;
