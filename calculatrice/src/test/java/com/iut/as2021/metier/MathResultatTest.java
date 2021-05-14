@@ -26,6 +26,11 @@ public class MathResultatTest {
         assertEquals(resultat.calculate(), 5, 2);
     }
     @Test
+    public void testExpressionSimpleAdditionParenthesesMultiples2() throws MathsExceptions {
+        resultat = new MathResultat("((1+1)+(1+1))");
+        assertEquals(resultat.calculate(), 4, 2);
+    }
+    @Test
     public void testExpressionDeuxChiffresAddition() throws MathsExceptions {
         resultat = new MathResultat("20 + 30");
         assertEquals(resultat.calculate(), 50, 2);

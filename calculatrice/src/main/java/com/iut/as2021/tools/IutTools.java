@@ -86,6 +86,44 @@ public class IutTools {
 
         return 0;
     }
+
+    public int getFirstClosingParenthesis(String expression) throws MathsExceptions{
+        if (!isGoodParenthesis(expression)){
+            throw new MathsExceptions("Expression mal parenthesée");
+        } else {
+           for (int i = 0; i < expression.length(); i++){
+               if (expression.charAt(i) == ')'){
+                   return i;
+               }
+           }
+        }
+        return 0;
+    }
+
+    public int getLastOpeningParenthesis(String expression) throws MathsExceptions{
+        int last = 0;
+        if (!isGoodParenthesis(expression)){
+            throw new MathsExceptions("Expression mal parenthesée");
+        } else {
+            int pos = getFirstClosingParenthesis(expression);
+
+            for (int i = 0; i < pos; i++) {
+                if (expression.charAt(i) == '(') {
+                    last = i;
+                }
+            }
+        }
+        return last;
+    }
+
+    public MathResultat insideExpression(String expression) throws MathsExceptions {
+        int closingpos = getFirstClosingParenthesis(expression);
+        int openingpos = getLastOpeningParenthesis(expression);
+        String newexpression = expression.substring(openingpos, closingpos);
+        return new MathResultat(newexpression);
+    }
+
+
 }
 
 /*(10+(11+12))
