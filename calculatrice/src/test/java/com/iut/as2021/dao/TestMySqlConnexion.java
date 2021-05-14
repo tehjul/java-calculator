@@ -13,7 +13,7 @@ public class TestMySqlConnexion {
 
     @Test
     public void testConnexionOk() throws SQLException, ClassNotFoundException {
-        Connection connection = MySqlConnexion.getInstance();
+        Connection connection = MySqlConnexion.getInstance().getConnexion();
         assertNotNull(connection);
         assertEquals(DB_NAME, connection.getCatalog());
     }

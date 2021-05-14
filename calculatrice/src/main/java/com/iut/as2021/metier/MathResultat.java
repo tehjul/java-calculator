@@ -21,6 +21,7 @@ public class MathResultat {
     private EOperation operation;
     private IMaths maths;
 
+    private int id;
     private String expression;
     private MathResultat leftExpression;
     private MathResultat rightExpression;
@@ -31,6 +32,14 @@ public class MathResultat {
 
     public EOperation getOperation() {
         return operation;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public double getValue() throws MathsExceptions {
