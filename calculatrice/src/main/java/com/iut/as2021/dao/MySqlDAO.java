@@ -1,9 +1,6 @@
 package com.iut.as2021.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.List;
 
 import com.iut.as2021.exceptions.MathsExceptions;
@@ -16,7 +13,7 @@ public class MySqlDAO implements IDaoMathResult {
         MathResultat mathresultat = null;
 
         String sql = "select * from calculatrice where id = ?";
-        Connection co = MySqlConnexion.getInstance();
+        Connection co = MySqlConnexion.getInstance().getConnexion();
 
         PreparedStatement request = co.prepareStatement(sql);
         request.setInt(1, id);
@@ -30,7 +27,7 @@ public class MySqlDAO implements IDaoMathResult {
 
     @Override
     public List<MathResultat> getAll() {
-        List<MathResultat> liste = new List<>();
+        /*List<MathResultat> liste = new List<>();
 
         List<MathResultat> listePromos = MySQLPromotionDAO.getInstance().findAll();
 
@@ -45,9 +42,9 @@ public class MySqlDAO implements IDaoMathResult {
             int idx = listePromos.indexOf(p);
             e.setPromotion(listePromos.get(idx));
             liste.add(e);
-        }
+        }*/
 
-        return liste;
+        return null;
     }
 
     @Override
@@ -57,16 +54,32 @@ public class MySqlDAO implements IDaoMathResult {
     }
 
     @Override
-    public boolean create(MathResultat object) {
-        // TODO Auto-generated method stub
-        return false;
+    public boolean create(MathResultat m) throws SQLException, ClassNotFoundException {
+        /*String sql = "insert into calculatrice (id, expression, resultat, date) values (?, ?, ?, ?)";
+
+        Connection co = MySqlConnexion.getInstance();
+        PreparedStatement requete = co.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        requete.setString(1, "null");
+        requete.setString(2, m.getExpression());
+        requete.setString(3, " "); @// TODO: 13/05/2021
+        requete.setInt(4,23); @// TODO: 13/05/2021 chopper la date du jour );
+
+        int nbLignes = requete.executeUpdate();
+        ResultSet res = requete.getGeneratedKeys();
+        if (res.next()) {
+            e.setId(res.getInt(1));
+        }
+
+        return (nbLignes==1);*/
+        return true;
     }
 
     @Override
     public boolean delete(MathResultat object) throws SQLException, ClassNotFoundException {
         String sql = "delete from calculatrice where expression=?";
 
-        Connection co = MySqlConnexion.getInstance();
+        Connection co = MySqlConnexion.getInstance().getConnexion();
+
         PreparedStatement requete = co.prepareStatement(sql);
         requete.setString(1, object.getExpression());
         int nbLignes = requete.executeUpdate();
