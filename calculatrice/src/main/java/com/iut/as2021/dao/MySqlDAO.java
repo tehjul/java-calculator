@@ -9,18 +9,40 @@ import com.iut.as2021.metier.MathResultat;
 
 public class MySqlDAO implements IDaoMathResult {
 
+    private static IDaoMathResult instance;
+    private Connection connection = null;
+    private MySqlDAO() {
+        try{
+            connection = MySqlConnexion.getInstance().getConnexion();
+        } catch (SQLException throwables) {
+            // beurk..
+            throwables.printStackTrace();
+        }
+    }
+
+    public static IDaoMathResult getInstance(){
+        if (instance == null){
+            return new MySqlDAO();
+        }
+        return instance;
+    }
+
     @Override
     public MathResultat readById(int id) throws SQLException, ClassNotFoundException, MathsExceptions {
         MathResultat mathresultat = null;
+        try {
+            String sql = "select * from calculatrice where id = ?";
+            PreparedStatement request = connection.prepareStatement(sql);
+            request.setInt(1, id);
+            ResultSet res = request.executeQuery();
+            while (res.next()) {
+                String expression = res.getString("expression");
+                mathresultat = new MathResultat(expression);
+            }
 
-        String sql = "select expression from calculatrice where id = ?";
-        Connection co = MySqlConnexion.getInstance().getConnexion();
-
-        PreparedStatement request = co.prepareStatement(sql);
-        request.setInt(1, id);
-        ResultSet res = request.executeQuery();
-        if (res.next()) {
-            mathresultat = new MathResultat(res.getString("expression"));
+        } catch (SQLException throwables) {
+            // beurk
+            throwables.printStackTrace();
         }
 
         return mathresultat;

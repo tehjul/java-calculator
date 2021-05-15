@@ -72,7 +72,7 @@ public class MathResultat {
         this.maths = new Maths();
     }
 
-    protected double calculate() throws MathsExceptions {
+    public double calculate() throws MathsExceptions {
         if (!INCONNUE.equals(operation)) {
             double leftValue = leftExpression.getValue();
             double rightValue = rightExpression.getValue();
