@@ -28,7 +28,6 @@ public class MySqlDAOTest {
         daoMock = Mockito.mock(MySqlDAO.class);
     }
 
-    @Test
     public void testGetInstance() {
     }
 
