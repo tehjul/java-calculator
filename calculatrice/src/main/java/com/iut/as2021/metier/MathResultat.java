@@ -66,7 +66,7 @@ public class MathResultat {
         }
 
         this.operation = INCONNUE;
-        this.expression = expression;
+        this.expression = IutTools.TrimBorderParenthesis(expression);
         System.out.println("dans constructeur, expression = " + expression);
         switchLeftAndRightExpression();
         this.maths = new Maths();
