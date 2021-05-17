@@ -7,6 +7,8 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 
+import java.sql.SQLException;
+
 import static com.iut.as2021.dao.DaoFactory.getDAOFactory;
 import static com.iut.as2021.dao.ETypeDao.MYSQL;
 import static org.junit.Assert.assertEquals;
@@ -27,13 +29,13 @@ public class MySqlDAOTest {
     }
 
     @Test
-    public void testReadById() throws MathsExceptions {
+    public void testReadById() throws MathsExceptions, SQLException {
         MathResultat resultat = dao.readById(1);
         assertEquals(resultat.calculate(), 5, 0);
     }
 
     @Test
-    public void testReadByIdWithMockito() throws MathsExceptions {
+    public void testReadByIdWithMockito() throws MathsExceptions, SQLException {
         MathResultat resultat = new MathResultat("2+3");
         Mockito.when(daoMock.readById(anyInt())).thenReturn(resultat);
         assertEquals(resultat.calculate(), 5, 0);

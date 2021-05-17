@@ -28,6 +28,7 @@ public class MathResultat {
     private EOperation operation;
     private IMaths maths;
 
+    private int id;
     private String expression;
 
     private MathResultat leftExpression;
@@ -35,8 +36,12 @@ public class MathResultat {
 
     private static final String ZERO = "0000000";
 
-    protected String getExpression() {
+    public String getExpression() {
         return expression;
+    }
+
+    public int getId() {
+        return id;
     }
 
     protected String getLeftExp() {
