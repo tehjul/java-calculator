@@ -139,19 +139,19 @@ public class IutTools {
         return result;
     }
 
-    public static String getEntireExpressionBetweenParenthesis(String expression){
+    public static String getEntireExpressionBetweenParenthesis(String expression) throws MathsExceptions {
 
         String result = "";
         while (NbParentheses(expression)!=0){
-            pos1 = getLastOpeningParenthesis(expression);
-            pos2 = getFirstClosingParenthesis(expression);
-            String expressionToAdd = MathResultat insideExpression(expression);
+            int pos1 = getLastOpeningParenthesis(expression);
+            int pos2 = getFirstClosingParenthesis(expression);
+            MathResultat expressionToAdd = insideExpression(expression);
             String expression1 = deleteBetween2Pos(expression, pos1, pos2);
             String expression2 = deleteParenthesis(expression1, pos1, pos2);
-            String expression3 = addToPos(expression2, expressionToAdd, pos1);
-            result = "" + expression3;
+            //String expression3 = addToPos(expression2, expressionToAdd, pos1);
+            result = ""; //+ expression3;
         }
-        return result
+        return result;
     }
 
 

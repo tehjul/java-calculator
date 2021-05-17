@@ -3,10 +3,12 @@ package com.iut.as2021.enumerations;
 public enum EOperation {
 
     INCONNUE(0, ""),
-    ADDITION(1, "+"),
-    SOUSTRACTION(2, "-"),
-    MULTIPLICATION(3, "*"),
-    DIVISION(4, "/");
+    MULTIPLICATION(1, "*"),
+    DIVISION(2, "/"),
+    ADDITION(3, "+"),
+    SOUSTRACTION(4, "-"),
+    OPEN_BRACKET(5, "["),
+    CLOSE_BRACKET(6, "]");
 
     private int code;
     private String operateur;

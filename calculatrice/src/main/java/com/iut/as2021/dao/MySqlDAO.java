@@ -11,12 +11,13 @@ public class MySqlDAO implements IDaoMathResult {
 
     private static IDaoMathResult instance;
     private Connection connection = null;
+
     private MySqlDAO() {
         try{
             connection = MySqlConnexion.getInstance().getConnexion();
-        } catch (SQLException throwables) {
+        } catch (SQLException e) {
             // beurk..
-            throwables.printStackTrace();
+            System.out.println("Connexion vers la db indisponible ..");
         }
     }
 
@@ -28,7 +29,7 @@ public class MySqlDAO implements IDaoMathResult {
     }
 
     @Override
-    public MathResultat readById(int id) throws SQLException, ClassNotFoundException, MathsExceptions {
+    public MathResultat readById(int id) {
         MathResultat mathresultat = null;
         try {
             String sql = "select * from calculatrice where id = ?";
@@ -40,89 +41,82 @@ public class MySqlDAO implements IDaoMathResult {
                 mathresultat = new MathResultat(expression);
             }
 
-        } catch (SQLException throwables) {
+        } catch (SQLException | MathsExceptions e) {
             // beurk
-            throwables.printStackTrace();
+            System.out.println(e.getMessage());
         }
 
         return mathresultat;
     }
 
     @Override
-    public MathResultat getlast() throws Exception {
-        MathResultat mathResultat = null;
-
-        String sql = "SELECT * FROM calculatrice WHERE date IN (SELECT MAX(date) FROM calculatrice";
-
-        Connection co = MySqlConnexion.getInstance().getConnexion();
-
-        PreparedStatement requete = co.prepareStatement(sql);
-        ResultSet resultSet = requete.executeQuery();
-        if (resultSet.next()){
-            mathResultat = new MathResultat(resultSet.getString("expression"));
-            mathResultat.setId(resultSet.getInt("id"));
-        }
-
-        return mathResultat;
-    }
-
-    @Override
-    public ArrayList<MathResultat> getAll() throws SQLException, MathsExceptions {
-        ArrayList<MathResultat> liste = new ArrayList<>();
-
-        String sql = "select expression from calculatrice";
-        Connection co = MySqlConnexion.getInstance().getConnexion();
-
-        Statement requete = co.createStatement();
-        ResultSet res = requete.executeQuery(sql);
-        while (res.next()) {
-            MathResultat m = new MathResultat(res.getString("expression"));
-            liste.add(m);
+    public List<MathResultat> getAll(){
+        List<MathResultat> liste = new ArrayList<>();
+        MathResultat m = null;
+        try {
+            String sql = "select expression from calculatrice";
+            PreparedStatement requete = connection.prepareStatement(sql);
+            ResultSet res = requete.executeQuery(sql);
+            while (res.next()) {
+                m = new MathResultat(res.getString("expression"));
+                liste.add(m);
+            }
+        } catch (SQLException | MathsExceptions e) {
+            System.out.println(e.getMessage());
         }
 
         return liste;
     }
 
     @Override
-    public boolean update(MathResultat m) throws SQLException {
-        String sql = "UPDATE calculatrice SET expression = ? WHERE id = ?";
-        Connection co = MySqlConnexion.getInstance().getConnexion();
-        PreparedStatement requete = co.prepareStatement(sql);
+    public boolean update(MathResultat m) {
+        int nbLignes = 0;
+        try {
+            String sql = "UPDATE calculatrice SET expression = ? WHERE id = ?";
+            PreparedStatement requete = connection.prepareStatement(sql);
 
-        requete.setString(1, m.getExpression());
-        requete.setInt(2, m.getId());
+            //requete.setString(1, m.getExpression());
+            //requete.setInt(2, m.getId());
 
-        int nbLignes = requete.executeUpdate();
+            nbLignes = requete.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
 
         return nbLignes == 1;
     }
 
     @Override
-    public boolean create(MathResultat m) throws SQLException, ClassNotFoundException {
-        String sql = "insert into calculatrice (expression) values (?)";
+    public boolean create(MathResultat m) {
+        int nbLignes = 0;
+        try {
+            String sql = "insert into calculatrice (expression) values (?)";
+            PreparedStatement requete = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            //requete.setInt(1, m.getId());
 
-        Connection co = MySqlConnexion.getInstance().getConnexion();
-        PreparedStatement requete = co.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-        requete.setInt(1, m.getId());
-
-        int nbLignes = requete.executeUpdate();
-        ResultSet res = requete.getGeneratedKeys();
-        if (res.next()) {
-            m.setId(res.getInt(1));
+            nbLignes = requete.executeUpdate();
+            ResultSet res = requete.getGeneratedKeys();
+            if (res.next()) {
+                //m.setId(res.getInt(1));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
 
         return (nbLignes==1);
     }
 
     @Override
-    public boolean delete(MathResultat m) throws SQLException, ClassNotFoundException {
-        String sql = "delete from calculatrice where id=?";
-
-        Connection co = MySqlConnexion.getInstance().getConnexion();
-
-        PreparedStatement requete = co.prepareStatement(sql);
-        requete.setInt(1, m.getId());
-        int nbLignes = requete.executeUpdate();
+    public boolean delete(MathResultat m) {
+        int nbLignes = 0;
+        try {
+            String sql = "delete from calculatrice where id=?";
+            PreparedStatement requete = connection.prepareStatement(sql);
+            //requete.setInt(1, m.getId());
+            nbLignes = requete.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
 
         return (nbLignes==1);
     }

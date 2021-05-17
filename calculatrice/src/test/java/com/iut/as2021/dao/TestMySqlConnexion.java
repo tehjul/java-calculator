@@ -12,9 +12,16 @@ public class TestMySqlConnexion {
     private static final String DB_NAME = "sibille33u_cpoa";
 
     @Test
-    public void testConnexionOk() throws SQLException, ClassNotFoundException {
+    public void testConnexionOk() throws SQLException {
         Connection connection = MySqlConnexion.getInstance().getConnexion();
         assertNotNull(connection);
         assertEquals(DB_NAME, connection.getCatalog());
+    }
+
+    @Test
+    public void testConnexionIsSingleton() throws SQLException{
+        Connection connection1 = MySqlConnexion.getInstance().getConnexion();
+        Connection connection2 = MySqlConnexion.getInstance().getConnexion();
+        assertEquals(connection1, connection2);
     }
 }

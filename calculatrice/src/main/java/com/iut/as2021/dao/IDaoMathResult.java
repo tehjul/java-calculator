@@ -1,25 +1,6 @@
 package com.iut.as2021.dao;
 
-import com.iut.as2021.exceptions.MathsExceptions;
 import com.iut.as2021.metier.MathResultat;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
 public interface IDaoMathResult extends IDao<MathResultat> {
-    @Override
-    MathResultat readById(int i) throws SQLException, ClassNotFoundException, MathsExceptions;
-
-    @Override
-    ArrayList<MathResultat> getAll() throws SQLException, MathsExceptions;
-
-    @Override
-    boolean update(MathResultat object) throws SQLException;
-
-    @Override
-    boolean create(MathResultat object) throws SQLException, ClassNotFoundException;
-
-    @Override
-    boolean delete(MathResultat object) throws SQLException, ClassNotFoundException;
 }
