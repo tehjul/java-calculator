@@ -1,4 +1,4 @@
-package com.iut.as2021.dao;
+package com.iut.as2021.dao.connexion;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,12 +8,12 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-public class MySqlConnexion {
-    private static MySqlConnexion instance;
+public class Connexion {
+    private static Connexion instance;
 
-    public static MySqlConnexion getInstance() {
+    public static Connexion getInstance() {
         if (instance == null) {
-            instance = new MySqlConnexion();
+            return new Connexion();
         }
         return instance;
     }
@@ -21,12 +21,11 @@ public class MySqlConnexion {
     private String url, login, pwd;
     private Connection maConnexion;
 
-    private MySqlConnexion() {
-
+    private Connexion() {
         this.litFichier();
     }
 
-    public Connection getConnexion() throws SQLException {
+    public Connection creeConnexion() throws SQLException {
 
         if (this.maConnexion==null || this.maConnexion.isClosed()) {
             this.maConnexion = DriverManager.getConnection(this.url, this.login, this.pwd);
