@@ -11,7 +11,7 @@
         <h2>Tapez votre calcul</h2>
         <input type="text" name="numbers" id="expresion" size="41"/><br>
         <label for="expresion"></label>
-        <button type="button" size="41">Résultat</button><br>
+        <button type="button" size="41">Resultat</button><br>
         <label for="result"></label>
         <input type="text" name="numbers" id="result" size="41" readonly/>
     </form>
