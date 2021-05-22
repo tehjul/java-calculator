@@ -1,0 +1,355 @@
+Index: calculatrice/pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n  xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd\">\n  <modelVersion>4.0.0</modelVersion>\n\n  <groupId>com.iut.as2021</groupId>\n  <artifactId>calculatrice</artifactId>\n  <version>1.0-SNAPSHOT</version>\n\n  <name>calculatrice</name>\n  <!-- FIXME change it to the project's website -->\n  <url>http://www.example.com</url>\n\n  <properties>\n    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>\n    <maven.compiler.source>1.7</maven.compiler.source>\n    <maven.compiler.target>1.7</maven.compiler.target>\n  </properties>\n\n  <dependencies>\n    <!-- https://mvnrepository.com/artifact/junit/junit -->\n    <dependency>\n      <groupId>junit</groupId>\n      <artifactId>junit</artifactId>\n      <version>4.12</version>\n      <scope>test</scope>\n    </dependency>\n    <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->\n    <dependency>\n      <groupId>org.mockito</groupId>\n      <artifactId>mockito-all</artifactId>\n      <version>1.10.19</version>\n      <scope>test</scope>\n    </dependency>\n    <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->\n    <dependency>\n      <groupId>mysql</groupId>\n      <artifactId>mysql-connector-java</artifactId>\n      <version>8.0.11</version>\n    </dependency>\n\n\n  </dependencies>\n\n  <build>\n    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->\n      <plugins>\n        <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->\n        <plugin>\n          <artifactId>maven-clean-plugin</artifactId>\n          <version>3.1.0</version>\n        </plugin>\n        <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->\n        <plugin>\n          <artifactId>maven-resources-plugin</artifactId>\n          <version>3.0.2</version>\n        </plugin>\n        <plugin>\n          <artifactId>maven-compiler-plugin</artifactId>\n          <version>3.8.0</version>\n        </plugin>\n        <plugin>\n          <artifactId>maven-surefire-plugin</artifactId>\n          <version>2.22.1</version>\n        </plugin>\n        <plugin>\n          <artifactId>maven-jar-plugin</artifactId>\n          <version>3.0.2</version>\n        </plugin>\n        <plugin>\n          <artifactId>maven-install-plugin</artifactId>\n          <version>2.5.2</version>\n        </plugin>\n        <plugin>\n          <artifactId>maven-deploy-plugin</artifactId>\n          <version>2.8.2</version>\n        </plugin>\n        <!-- site lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#site_Lifecycle -->\n        <plugin>\n          <artifactId>maven-site-plugin</artifactId>\n          <version>3.7.1</version>\n        </plugin>\n        <plugin>\n          <artifactId>maven-project-info-reports-plugin</artifactId>\n          <version>3.0.0</version>\n        </plugin>\n      </plugins>\n    </pluginManagement>\n  </build>\n</project>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- calculatrice/pom.xml	(revision 0f9fc67954a6befd6b5f2728c96570739bba01b2)
++++ calculatrice/pom.xml	(date 1621668302823)
+@@ -40,6 +40,12 @@
+       <version>8.0.11</version>
+     </dependency>
+ 
++    <dependency>
++    <groupId>org.apache.struts</groupId>
++    <artifactId>struts2-core</artifactId>
++    <version>2.5.26</version>
++  </dependency>
++
+ 
+   </dependencies>
+ 
+Index: calculatrice/src/main/java/com/iut/as2021/tools/IutTools.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.iut.as2021.tools;\n\nimport com.iut.as2021.exceptions.MathsExceptions;\nimport com.iut.as2021.metier.MathResultat;\n\npublic class IutTools {\n\n    public static String getLeftExpression(String expression, int pos) {\n        return expression.substring(0, pos).trim();\n    }\n\n    public static String getRightExpression(String expression, int pos) {\n\n        return expression.substring(pos + 1).trim();\n    }\n\n    public static char getNextOperand(String expression, int pos) {\n        for (int i = pos; i < expression.length(); i++){\n            char c = expression.charAt(i);\n            if (c == 42 || c == 43 || c == 45 || c == 47){\n                return c;\n            }\n        }\n        return 32;\n    }\n\n    public static String getNextInt(String expression, int pos) {\n        String res = \"\";\n        for (int i = pos; i < expression.length(); i++){\n            char c = expression.charAt(i);\n            if (c == 32 && res != \"\") {\n                return res;\n            }\n            if (c > 47 && c < 58) {\n                res += c;\n            }\n        }\n        return res;\n    }\n\n    public static boolean isGoodParenthesis(String expression){\n        int index = 0;\n\n        for (int i = 0; i < expression.length(); i++){\n            if (expression.charAt(i) == '(') {\n                System.out.println(\"J'ai une ouvrante\");\n                index++;\n            } else if (expression.charAt(i) == ')') {\n                System.out.println(\"J'ai une fermante\");\n                index--;\n            }\n        }\n        return index == 0;\n    }\n\n    public static String TrimBorderParenthesis(String expression){\n        if (expression.charAt(0) == '(' && expression.charAt(expression.length()-1) == ')'){\n            return TrimBorderParenthesis(expression.substring(1, expression.length()-1).trim());\n        }\n        return expression;\n    }\n\n    public static int NbParentheses(String expression){\n        int result = 0;\n        for (int i = 0; i < expression.length(); i++){\n            if (expression.charAt(i) == '(' || expression.charAt(i) == ')'){\n                result++;\n            }\n        }\n        return result;\n    }\n\n    public static int getFirstClosingParenthesis(String expression) throws MathsExceptions{\n        if (!isGoodParenthesis(expression)){\n            throw new MathsExceptions(\"Expression mal parenthesée\");\n        } else {\n           for (int i = 0; i < expression.length(); i++){\n               if (expression.charAt(i) == ')'){\n                   return i;\n               }\n           }\n        }\n        return 0;\n    }\n\n    public static int getLastOpeningParenthesis(String expression) throws MathsExceptions{\n        int last = 0;\n        if (!isGoodParenthesis(expression)){\n            throw new MathsExceptions(\"Expression mal parenthesée\");\n        } else {\n            int pos = getFirstClosingParenthesis(expression);\n\n            for (int i = 0; i < pos; i++) {\n                if (expression.charAt(i) == '(') {\n                    last = i;\n                }\n            }\n        }\n        return last;\n    }\n\n    public static MathResultat insideExpression(String expression) throws MathsExceptions {\n        int closingpos = getFirstClosingParenthesis(expression);\n        int openingpos = getLastOpeningParenthesis(expression);\n        String newExpression = expression.substring(openingpos+1, closingpos);\n        return new MathResultat(newExpression);\n    }\n\n    public static String deleteParenthesis(String expression, int pos1, int pos2) throws MathsExceptions{\n        String result = \"\";\n        for (int i = 0; i < expression.length(); i++){\n            if (i != pos1 && i != pos2){\n                result += expression.charAt(i);\n            }\n        }\n        return result;\n    }\n\n    public static String deleteBetween2Pos(String expression, int pos1, int pos2) throws MathsExceptions{\n        String result = \"\";\n        for (int i = 0; i < expression.length(); i++){\n            if (i < pos1 || i > pos2){\n                result += expression.charAt(i);\n            }\n        }\n        return result;\n    }\n\n    public static String addToPos(String expression, String exptoadd, int pos) throws MathsExceptions{\n        String result = \"\";\n        for (int i = 0; i < expression.length(); i++){\n            result += expression.charAt(i);\n            if (i == pos-1){\n                for (int j = 0; j < exptoadd.length(); j++){\n                    result += exptoadd.charAt(j);\n                }\n            }\n        }\n        return result;\n    }\n\n\n}\n\n/*(10+(11+12))\n1- on doit connaitre la première position d'une parenthese fermante (ici 10)\n2- on doit connaitre la derniere position d'une parenthese ouvrante dont la position est inferieur à resultat algo 1 (ici 4)\n3- faire le calcul entre ces deux positions (donc 11+12 = 23)\n4- supprimer les parentheses traités c-à-d position 4 et 10 et on retourne la concatenation du reste avec le resultat entre les prentheses (donc il ne reste que \"(10+23)\")\n5- appel recursif de la fonction jusqu'a ce qu'il n'y a plus de parenthese*/\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- calculatrice/src/main/java/com/iut/as2021/tools/IutTools.java	(revision 0f9fc67954a6befd6b5f2728c96570739bba01b2)
++++ calculatrice/src/main/java/com/iut/as2021/tools/IutTools.java	(date 1621071432608)
+@@ -139,7 +139,20 @@
+         return result;
+     }
+ 
++    public static String getEntireExpressionBetweenParenthesis(String expression){
+ 
++        String result = "";
++        while (NbParentheses(String expression)!=0){
++            pos1 = getLastOpeningParenthesis(String expression);
++            pos2 = getFirstClosingParenthesis(String expression);
++            String expression0 = MathResultat insideExpression(String expression);
++            String expression1 = deleteParenthesis(expression0, pos1, pos2);
++            String expression2 = deleteBetween2Pos(expression1, pos1, pos2);
++            String expression3 = addToPos(expression2, String exptoadd, pos1);
++            result = "" + expression3;
++        }
++        return result
++    }
+ }
+ 
+ /*(10+(11+12))
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_13_05_2021_22_29__Default_Changelist_.xml
+===================================================================
+--- .idea/shelf/Uncommitted_changes_before_Update_at_13_05_2021_22_29__Default_Changelist_.xml	(revision 0f9fc67954a6befd6b5f2728c96570739bba01b2)
++++ .idea/shelf/Uncommitted_changes_before_Update_at_13_05_2021_22_29__Default_Changelist_.xml	(revision 0f9fc67954a6befd6b5f2728c96570739bba01b2)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_13_05_2021_22_29_[Default_Changelist]" date="1620937800428" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_05_2021_22_29_[Default_Changelist]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 13/05/2021 22:29 [Default Changelist]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_13_05_2021_22_21__Default_Changelist_.xml
+===================================================================
+--- .idea/shelf/Uncommitted_changes_before_Update_at_13_05_2021_22_21__Default_Changelist_.xml	(revision 0f9fc67954a6befd6b5f2728c96570739bba01b2)
++++ .idea/shelf/Uncommitted_changes_before_Update_at_13_05_2021_22_21__Default_Changelist_.xml	(revision 0f9fc67954a6befd6b5f2728c96570739bba01b2)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_13_05_2021_22_21_[Default_Changelist]" date="1620937267473" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_05_2021_22_21_[Default_Changelist]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 13/05/2021 22:21 [Default Changelist]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_14_05_2021_14_51__Default_Changelist_.xml
+===================================================================
+--- .idea/shelf/Uncommitted_changes_before_Update_at_14_05_2021_14_51__Default_Changelist_.xml	(revision 0f9fc67954a6befd6b5f2728c96570739bba01b2)
++++ .idea/shelf/Uncommitted_changes_before_Update_at_14_05_2021_14_51__Default_Changelist_.xml	(revision 0f9fc67954a6befd6b5f2728c96570739bba01b2)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_14_05_2021_14_51_[Default_Changelist]" date="1620996680795" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_05_2021_14_51_[Default_Changelist]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 14/05/2021 14:51 [Default Changelist]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_14_05_2021_14_51_[Default_Changelist]/shelved.patch
+===================================================================
+--- .idea/shelf/Uncommitted_changes_before_Update_at_14_05_2021_14_51_[Default_Changelist]/shelved.patch	(revision 0f9fc67954a6befd6b5f2728c96570739bba01b2)
++++ .idea/shelf/Uncommitted_changes_before_Update_at_14_05_2021_14_51_[Default_Changelist]/shelved.patch	(revision 0f9fc67954a6befd6b5f2728c96570739bba01b2)
+@@ -1,50 +0,0 @@
+-Index: .idea/workspace.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"a588c553-43b9-4bca-a4fc-f912da2baec7\" name=\"Default Changelist\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/calculatrice/src/main/java/com/iut/as2021/dao/IDao.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/calculatrice/src/main/java/com/iut/as2021/dao/IDao.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/calculatrice/src/main/java/com/iut/as2021/dao/MySqlDaoFactory.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/calculatrice/src/main/java/com/iut/as2021/dao/MySqlDaoFactory.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1sWjDoomO8B7CbR5GQdZBAxPrRZ\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"aspect.path.notification.shown\" value=\"true\" />\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"a588c553-43b9-4bca-a4fc-f912da2baec7\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1620995122975</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1620995122975</updated>\r\n      <workItem from=\"1620995124463\" duration=\"752000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+---- a/.idea/workspace.xml	(revision 0dd8c08bbf6859eb893b3b42b10fd1124357b110)
+-+++ b/.idea/workspace.xml	(date 1620996644543)
+-@@ -1,10 +1,7 @@
+- <?xml version="1.0" encoding="UTF-8"?>
+- <project version="4">
+-   <component name="ChangeListManager">
+--    <list default="true" id="a588c553-43b9-4bca-a4fc-f912da2baec7" name="Default Changelist" comment="">
+--      <change beforePath="$PROJECT_DIR$/calculatrice/src/main/java/com/iut/as2021/dao/IDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculatrice/src/main/java/com/iut/as2021/dao/IDao.java" afterDir="false" />
+--      <change beforePath="$PROJECT_DIR$/calculatrice/src/main/java/com/iut/as2021/dao/MySqlDaoFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculatrice/src/main/java/com/iut/as2021/dao/MySqlDaoFactory.java" afterDir="false" />
+--    </list>
+-+    <list default="true" id="a588c553-43b9-4bca-a4fc-f912da2baec7" name="Default Changelist" comment="MySqlDaoFactory" />
+-     <option name="SHOW_DIALOG" value="false" />
+-     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+-     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+-@@ -33,8 +30,16 @@
+-       <option name="number" value="Default" />
+-       <option name="presentableId" value="Default" />
+-       <updated>1620995122975</updated>
+--      <workItem from="1620995124463" duration="752000" />
+-+      <workItem from="1620995124463" duration="1508000" />
+-+    </task>
+-+    <task id="LOCAL-00001" summary="MySqlDaoFactory">
+-+      <created>1620995931938</created>
+-+      <option name="number" value="00001" />
+-+      <option name="presentableId" value="LOCAL-00001" />
+-+      <option name="project" value="LOCAL" />
+-+      <updated>1620995931938</updated>
+-     </task>
+-+    <option name="localTasksCounter" value="2" />
+-     <servers />
+-   </component>
+-   <component name="TypeScriptGeneratedFilesManager">
+-@@ -51,4 +56,8 @@
+-       </map>
+-     </option>
+-   </component>
+-+  <component name="VcsManagerConfiguration">
+-+    <MESSAGE value="MySqlDaoFactory" />
+-+    <option name="LAST_COMMIT_MESSAGE" value="MySqlDaoFactory" />
+-+  </component>
+- </project>
+-\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_13_05_2021_22_29_[Default_Changelist]/shelved.patch
+===================================================================
+--- .idea/shelf/Uncommitted_changes_before_Update_at_13_05_2021_22_29_[Default_Changelist]/shelved.patch	(revision 0f9fc67954a6befd6b5f2728c96570739bba01b2)
++++ .idea/shelf/Uncommitted_changes_before_Update_at_13_05_2021_22_29_[Default_Changelist]/shelved.patch	(revision 0f9fc67954a6befd6b5f2728c96570739bba01b2)
+@@ -1,37 +0,0 @@
+-Index: calculatrice/src/main/java/com/iut/as2021/dao/MySqlDAO.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>package com.iut.as2021.dao;\r\n\r\nimport java.sql.Connection;\r\nimport java.sql.PreparedStatement;\r\nimport java.sql.ResultSet;\r\nimport java.sql.SQLException;\r\nimport java.util.List;\r\n\r\nimport com.iut.as2021.exceptions.MathsExceptions;\r\nimport com.iut.as2021.metier.MathResultat;\r\n\r\npublic class MySqlDAO implements IDaoMathResult {\r\n\r\n    @Override\r\n    public MathResultat readById(int id) throws SQLException, ClassNotFoundException, MathsExceptions {\r\n        MathResultat mathresultat = null;\r\n\r\n        String sql = \"select * from calculatrice where id = ?\";\r\n        Connection co = MySqlConnexion.getInstance();\r\n\r\n        PreparedStatement request = co.prepareStatement(sql);\r\n        request.setInt(1, id);\r\n        ResultSet res = request.executeQuery();\r\n        if (res.next()) {\r\n            mathresultat = new MathResultat(res.getString(\"expression\"));\r\n        }\r\n\r\n        return mathresultat;\r\n    }\r\n\r\n    @Override\r\n    public List<MathResultat> getAll() {\r\n        // TODO Auto-generated method stub\r\n        return null;\r\n    }\r\n\r\n    @Override\r\n    public boolean update(MathResultat object) {\r\n        // TODO Auto-generated method stub\r\n        return false;\r\n    }\r\n\r\n    @Override\r\n    public boolean create(MathResultat object) {\r\n        // TODO Auto-generated method stub\r\n        return false;\r\n    }\r\n\r\n    @Override\r\n    public boolean delete(MathResultat object) {\r\n        // TODO Auto-generated method stub\r\n        return false;\r\n    }\r\n\r\n}
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/calculatrice/src/main/java/com/iut/as2021/dao/MySqlDAO.java b/calculatrice/src/main/java/com/iut/as2021/dao/MySqlDAO.java
+---- a/calculatrice/src/main/java/com/iut/as2021/dao/MySqlDAO.java	(revision b506cfbd3581c5392e69a599ba2f02923bf4a4f6)
+-+++ b/calculatrice/src/main/java/com/iut/as2021/dao/MySqlDAO.java	(date 1620937267438)
+-@@ -30,8 +30,24 @@
+- 
+-     @Override
+-     public List<MathResultat> getAll() {
+--        // TODO Auto-generated method stub
+--        return null;
+-+        ArrayList<Etudiant> liste = new ArrayList<>();
+-+
+-+        ArrayList<Promotion> listePromos = MySQLPromotionDAO.getInstance().findAll();
+-+
+-+        String sql = "select * from etudiant";
+-+        Connection co = Connexion.getInstance().getConnexion();
+-+
+-+        Statement requete = co.createStatement();
+-+        ResultSet res = requete.executeQuery(sql);
+-+        while (res.next()) {
+-+            Etudiant e = new Etudiant(res.getInt("id_etudiant"), res.getString("ine_etudiant"), res.getString("nom_etudiant"), res.getString("prenom_etudiant"));
+-+            Promotion p = new Promotion(res.getInt("id_promotion"), "xxx");
+-+            int idx = listePromos.indexOf(p);
+-+            e.setPromotion(listePromos.get(idx));
+-+            liste.add(e);
+-+        }
+-+
+-+        return liste;
+-     }
+- 
+-     @Override
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_13_05_2021_22_21_[Default_Changelist]/shelved.patch
+===================================================================
+--- .idea/shelf/Uncommitted_changes_before_Update_at_13_05_2021_22_21_[Default_Changelist]/shelved.patch	(revision 0f9fc67954a6befd6b5f2728c96570739bba01b2)
++++ .idea/shelf/Uncommitted_changes_before_Update_at_13_05_2021_22_21_[Default_Changelist]/shelved.patch	(revision 0f9fc67954a6befd6b5f2728c96570739bba01b2)
+@@ -1,37 +0,0 @@
+-Index: calculatrice/src/main/java/com/iut/as2021/dao/MySqlDAO.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>package com.iut.as2021.dao;\r\n\r\nimport java.sql.Connection;\r\nimport java.sql.PreparedStatement;\r\nimport java.sql.ResultSet;\r\nimport java.sql.SQLException;\r\nimport java.util.List;\r\n\r\nimport com.iut.as2021.exceptions.MathsExceptions;\r\nimport com.iut.as2021.metier.MathResultat;\r\n\r\npublic class MySqlDAO implements IDaoMathResult {\r\n\r\n    @Override\r\n    public MathResultat readyById(int id) throws SQLException, ClassNotFoundException, MathsExceptions {\r\n        MathResultat mathresultat = null;\r\n\r\n        String sql = \"select * from calculatrice where id = ?\";\r\n        Connection co = MySqlConnexion.getInstance();\r\n\r\n        PreparedStatement request = co.prepareStatement(sql);\r\n        request.setInt(1, id);\r\n        ResultSet res = request.executeQuery();\r\n        if (res.next()) {\r\n            mathresultat = new MathResultat(res.getString(\"expression\"));\r\n        }\r\n\r\n        return mathresultat;\r\n    }\r\n\r\n    @Override\r\n    public List<MathResultat> getAll() {\r\n        // TODO Auto-generated method stub\r\n        return null;\r\n    }\r\n\r\n    @Override\r\n    public boolean update(MathResultat object) {\r\n        // TODO Auto-generated method stub\r\n        return false;\r\n    }\r\n\r\n    @Override\r\n    public boolean create(MathResultat object) {\r\n        // TODO Auto-generated method stub\r\n        return false;\r\n    }\r\n\r\n    @Override\r\n    public boolean delete(MathResultat object) {\r\n        // TODO Auto-generated method stub\r\n        return false;\r\n    }\r\n\r\n}
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/calculatrice/src/main/java/com/iut/as2021/dao/MySqlDAO.java b/calculatrice/src/main/java/com/iut/as2021/dao/MySqlDAO.java
+---- a/calculatrice/src/main/java/com/iut/as2021/dao/MySqlDAO.java	(revision 6ca0b5b6e9ab1d033a79c4ef43ffa3eb92b1c234)
+-+++ b/calculatrice/src/main/java/com/iut/as2021/dao/MySqlDAO.java	(date 1620937053826)
+-@@ -30,8 +30,24 @@
+- 
+-     @Override
+-     public List<MathResultat> getAll() {
+--        // TODO Auto-generated method stub
+--        return null;
+-+        ArrayList<Etudiant> liste = new ArrayList<>();
+-+
+-+        ArrayList<Promotion> listePromos = MySQLPromotionDAO.getInstance().findAll();
+-+
+-+        String sql = "select * from etudiant";
+-+        Connection co = Connexion.getInstance().getConnexion();
+-+
+-+        Statement requete = co.createStatement();
+-+        ResultSet res = requete.executeQuery(sql);
+-+        while (res.next()) {
+-+            Etudiant e = new Etudiant(res.getInt("id_etudiant"), res.getString("ine_etudiant"), res.getString("nom_etudiant"), res.getString("prenom_etudiant"));
+-+            Promotion p = new Promotion(res.getInt("id_promotion"), "xxx");
+-+            int idx = listePromos.indexOf(p);
+-+            e.setPromotion(listePromos.get(idx));
+-+            liste.add(e);
+-+        }
+-+
+-+        return liste;
+-     }
+- 
+-     @Override
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"a588c553-43b9-4bca-a4fc-f912da2baec7\" name=\"Default Changelist\" comment=\"MySqlDaoFactory\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/calculatrice/src/main/java/com/iut/as2021/dao/MySqlDaoFactory.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/calculatrice/src/main/java/com/iut/as2021/dao/MySqlDaoFactory.java\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"ProjectId\" id=\"1sWjDoomO8B7CbR5GQdZBAxPrRZ\" />\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\n    <property name=\"aspect.path.notification.shown\" value=\"true\" />\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"a588c553-43b9-4bca-a4fc-f912da2baec7\" name=\"Default Changelist\" comment=\"\" />\n      <created>1620995122975</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1620995122975</updated>\n      <workItem from=\"1620995124463\" duration=\"752000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"MySqlDaoFactory\">\n      <created>1620996803715</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1620996803715</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"2\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"MySqlDaoFactory\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"MySqlDaoFactory\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(revision 0f9fc67954a6befd6b5f2728c96570739bba01b2)
++++ .idea/workspace.xml	(date 1621674574771)
+@@ -1,17 +1,48 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
++  <component name="BranchesTreeState">
++    <expand>
++      <path>
++        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
++        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
++      </path>
++      <path>
++        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
++        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
++      </path>
++      <path>
++        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
++        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
++        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
++      </path>
++    </expand>
++    <select />
++  </component>
+   <component name="ChangeListManager">
+     <list default="true" id="a588c553-43b9-4bca-a4fc-f912da2baec7" name="Default Changelist" comment="MySqlDaoFactory">
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_05_2021_22_21_[Default_Changelist]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_05_2021_22_21__Default_Changelist_.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_05_2021_22_29_[Default_Changelist]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_05_2021_22_29__Default_Changelist_.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_05_2021_14_51_[Default_Changelist]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_05_2021_14_51__Default_Changelist_.xml" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/calculatrice/src/main/java/com/iut/as2021/dao/MySqlDaoFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculatrice/src/main/java/com/iut/as2021/dao/MySqlDaoFactory.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/calculatrice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/calculatrice/pom.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/calculatrice/src/main/java/com/iut/as2021/tools/IutTools.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculatrice/src/main/java/com/iut/as2021/tools/IutTools.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+     <option name="LAST_RESOLUTION" value="IGNORE" />
++  </component>
++  <component name="CodeStyleSettingsInfer">
++    <option name="done" value="true" />
+   </component>
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++  </component>
++  <component name="ProjectCodeStyleSettingsMigration">
++    <option name="version" value="1" />
+   </component>
+   <component name="ProjectId" id="1sWjDoomO8B7CbR5GQdZBAxPrRZ" />
+   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+@@ -24,8 +55,35 @@
+     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+     <property name="WebServerToolWindowFactoryState" value="false" />
+     <property name="aspect.path.notification.shown" value="true" />
++    <property name="last_opened_file_path" value="$PROJECT_DIR$/.idea" />
++    <property name="settings.editor.selected.configurable" value="com.poratu.idea.plugins.tomcat.setting.TomcatSettingConfigurable" />
+   </component>
+-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
++  <component name="RunManager">
++    <configuration name="MonServeur" type="com.poratu.idea.plugins.tomcat" factoryName="SMART_TOMCAT_FACTORY">
++      <option name="adminPort" value="8005" />
++      <option name="contextPath" value="" />
++      <option name="docBase" value="" />
++      <option name="envOptions" />
++      <option name="passParentEnvironmentVariables" value="true" />
++      <option name="port" value="8080" />
++      <option name="tomcatInfo">
++        <TomcatInfo>
++          <option name="name" value="Apache Tomcat/9.0.46" />
++          <option name="number" value="0" />
++          <option name="path" value="$USER_HOME$/Téléchargements/apache-tomcat-9.0.46" />
++          <option name="version" value="9.0.46.0" />
++        </TomcatInfo>
++      </option>
++      <option name="vmOptions" value="" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++  </component>
++  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
++  <component name="SvnConfiguration">
++    <configuration />
++  </component>
+   <component name="TaskManager">
+     <task active="true" id="Default" summary="Default task">
+       <changelist id="a588c553-43b9-4bca-a4fc-f912da2baec7" name="Default Changelist" comment="" />
+@@ -58,9 +116,36 @@
+         </entry>
+       </map>
+     </option>
++    <option name="oldMeFiltersMigrated" value="true" />
+   </component>
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="MySqlDaoFactory" />
+     <option name="LAST_COMMIT_MESSAGE" value="MySqlDaoFactory" />
+   </component>
++  <component name="WindowStateProjectService">
++    <state x="418" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1621667677563">
++      <screen x="0" y="27" width="1920" height="1053" />
++    </state>
++    <state x="418" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1621667677563" />
++    <state x="743" y="314" width="424" height="491" key="FileChooserDialogImpl" timestamp="1621667527611">
++      <screen x="0" y="27" width="1920" height="1053" />
++    </state>
++    <state x="743" y="314" width="424" height="491" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1621667527611" />
++    <state x="449" y="188" width="1022" height="737" key="SettingsEditor" timestamp="1621667374552">
++      <screen x="0" y="27" width="1920" height="1053" />
++    </state>
++    <state x="449" y="188" width="1022" height="737" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1621667374552" />
++    <state x="734" y="467" width="442" height="179" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1621070383695">
++      <screen x="0" y="27" width="1920" height="1053" />
++    </state>
++    <state x="734" y="467" width="442" height="179" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.27.1920.1053@0.27.1920.1053" timestamp="1621070383695" />
++    <state x="288" y="256" width="1334" height="601" key="new project wizard" timestamp="1621671336103">
++      <screen x="0" y="27" width="1920" height="1053" />
++    </state>
++    <state x="288" y="256" width="1334" height="601" key="new project wizard/0.27.1920.1053@0.27.1920.1053" timestamp="1621671336103" />
++    <state x="623" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1621665980213">
++      <screen x="0" y="27" width="1920" height="1053" />
++    </state>
++    <state x="623" y="259" width="672" height="678" key="search.everywhere.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1621665980213" />
++  </component>
+ </project>
+\ No newline at end of file

@@ -1,0 +1,83 @@
+Index: calculatrice/src/main/java/com/iut/as2021/tools/IutTools.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.iut.as2021.tools;\n\nimport com.iut.as2021.exceptions.MathsExceptions;\nimport com.iut.as2021.metier.MathResultat;\n\npublic class IutTools {\n\n    public static String getLeftExpression(String expression, int pos) {\n        return expression.substring(0, pos).trim();\n    }\n\n    public static String getRightExpression(String expression, int pos) {\n\n        return expression.substring(pos + 1).trim();\n    }\n\n    public static char getNextOperand(String expression, int pos) {\n        for (int i = pos; i < expression.length(); i++){\n            char c = expression.charAt(i);\n            if (c == 42 || c == 43 || c == 45 || c == 47){\n                return c;\n            }\n        }\n        return 32;\n    }\n\n    public static String getNextInt(String expression, int pos) {\n        String res = \"\";\n        for (int i = pos; i < expression.length(); i++){\n            char c = expression.charAt(i);\n            if (c == 32 && res != \"\") {\n                return res;\n            }\n            if (c > 47 && c < 58) {\n                res += c;\n            }\n        }\n        return res;\n    }\n\n    public static boolean isGoodParenthesis(String expression){\n        int index = 0;\n\n        for (int i = 0; i < expression.length(); i++){\n            if (expression.charAt(i) == '(') {\n                System.out.println(\"J'ai une ouvrante\");\n                index++;\n            } else if (expression.charAt(i) == ')') {\n                System.out.println(\"J'ai une fermante\");\n                index--;\n            }\n        }\n        return index == 0;\n    }\n\n    public static String TrimBorderParenthesis(String expression){\n        if (expression.charAt(0) == '(' && expression.charAt(expression.length()-1) == ')'){\n            return TrimBorderParenthesis(expression.substring(1, expression.length()-1).trim());\n        }\n        return expression;\n    }\n\n    public static int NbParentheses(String expression){\n        int result = 0;\n        for (int i = 0; i < expression.length(); i++){\n            if (expression.charAt(i) == '(' || expression.charAt(i) == ')'){\n                result++;\n            }\n        }\n        return result;\n    }\n\n    public static int getFirstClosingParenthesis(String expression) throws MathsExceptions{\n        if (!isGoodParenthesis(expression)){\n            throw new MathsExceptions(\"Expression mal parenthesée\");\n        } else {\n           for (int i = 0; i < expression.length(); i++){\n               if (expression.charAt(i) == ')'){\n                   return i;\n               }\n           }\n        }\n        return 0;\n    }\n\n    public static int getLastOpeningParenthesis(String expression) throws MathsExceptions{\n        int last = 0;\n        if (!isGoodParenthesis(expression)){\n            throw new MathsExceptions(\"Expression mal parenthesée\");\n        } else {\n            int pos = getFirstClosingParenthesis(expression);\n\n            for (int i = 0; i < pos; i++) {\n                if (expression.charAt(i) == '(') {\n                    last = i;\n                }\n            }\n        }\n        return last;\n    }\n\n    public static MathResultat insideExpression(String expression) throws MathsExceptions {\n        int closingpos = getFirstClosingParenthesis(expression);\n        int openingpos = getLastOpeningParenthesis(expression);\n        String newExpression = expression.substring(openingpos+1, closingpos);\n        return new MathResultat(newExpression);\n    }\n\n    public static String deleteParenthesis(String expression, int pos1, int pos2) throws MathsExceptions{\n        String result = \"\";\n        for (int i = 0; i < expression.length(); i++){\n            if (i != pos1 && i != pos2){\n                result += expression.charAt(i);\n            }\n        }\n        return result;\n    }\n\n    public static String deleteBetween2Pos(String expression, int pos1, int pos2) throws MathsExceptions{\n        String result = \"\";\n        for (int i = 0; i < expression.length(); i++){\n            if (i < pos1 || i > pos2){\n                result += expression.charAt(i);\n            }\n        }\n        return result;\n    }\n\n    public static String addToPos(String expression, String exptoadd, int pos) throws MathsExceptions{\n        String result = \"\";\n        for (int i = 0; i < expression.length(); i++){\n            result += expression.charAt(i);\n            if (i == pos-1){\n                for (int j = 0; j < exptoadd.length(); j++){\n                    result += exptoadd.charAt(j);\n                }\n            }\n        }\n        return result;\n    }\n\n\n}\n\n/*(10+(11+12))\n1- on doit connaitre la première position d'une parenthese fermante (ici 10)\n2- on doit connaitre la derniere position d'une parenthese ouvrante dont la position est inferieur à resultat algo 1 (ici 4)\n3- faire le calcul entre ces deux positions (donc 11+12 = 23)\n4- supprimer les parentheses traités c-à-d position 4 et 10 et on retourne la concatenation du reste avec le resultat entre les prentheses (donc il ne reste que \"(10+23)\")\n5- appel recursif de la fonction jusqu'a ce qu'il n'y a plus de parenthese*/\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- calculatrice/src/main/java/com/iut/as2021/tools/IutTools.java	(revision 0f9fc67954a6befd6b5f2728c96570739bba01b2)
++++ calculatrice/src/main/java/com/iut/as2021/tools/IutTools.java	(date 1621070383730)
+@@ -139,6 +139,20 @@
+         return result;
+     }
+ 
++    public static String getEntireExpressionBetweenParenthesis(){
++
++        String result = "";
++        while (NbParentheses(String expression)!=0){
++            getFirstClosingParenthesis(String expression);
++            getLastOpeningParenthesis(String expression);
++            MathResultat insideExpression(String expression);
++            deleteParenthesis(String expression, int pos1, int pos2);
++            deleteBetween2Pos(String expression, int pos1, int pos2);
++            addToPos(String expression, String exptoadd, int pos;
++            result = "" + result;
++        }
++        return result
++    }
+ 
+ }
+ 
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"a588c553-43b9-4bca-a4fc-f912da2baec7\" name=\"Default Changelist\" comment=\"MySqlDaoFactory\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/calculatrice/src/main/java/com/iut/as2021/dao/MySqlDaoFactory.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/calculatrice/src/main/java/com/iut/as2021/dao/MySqlDaoFactory.java\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"ProjectId\" id=\"1sWjDoomO8B7CbR5GQdZBAxPrRZ\" />\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\n    <property name=\"aspect.path.notification.shown\" value=\"true\" />\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"a588c553-43b9-4bca-a4fc-f912da2baec7\" name=\"Default Changelist\" comment=\"\" />\n      <created>1620995122975</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1620995122975</updated>\n      <workItem from=\"1620995124463\" duration=\"752000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"MySqlDaoFactory\">\n      <created>1620996803715</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1620996803715</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"2\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"MySqlDaoFactory\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"MySqlDaoFactory\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(revision 0f9fc67954a6befd6b5f2728c96570739bba01b2)
++++ .idea/workspace.xml	(date 1621070383767)
+@@ -3,16 +3,22 @@
+   <component name="ChangeListManager">
+     <list default="true" id="a588c553-43b9-4bca-a4fc-f912da2baec7" name="Default Changelist" comment="MySqlDaoFactory">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/calculatrice/src/main/java/com/iut/as2021/dao/MySqlDaoFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculatrice/src/main/java/com/iut/as2021/dao/MySqlDaoFactory.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/calculatrice/src/main/java/com/iut/as2021/tools/IutTools.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculatrice/src/main/java/com/iut/as2021/tools/IutTools.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+     <option name="LAST_RESOLUTION" value="IGNORE" />
++  </component>
++  <component name="CodeStyleSettingsInfer">
++    <option name="done" value="true" />
+   </component>
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
++  <component name="ProjectCodeStyleSettingsMigration">
++    <option name="version" value="1" />
++  </component>
+   <component name="ProjectId" id="1sWjDoomO8B7CbR5GQdZBAxPrRZ" />
+   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+   <component name="ProjectViewState">
+@@ -25,7 +31,10 @@
+     <property name="WebServerToolWindowFactoryState" value="false" />
+     <property name="aspect.path.notification.shown" value="true" />
+   </component>
+-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
++  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
++  <component name="SvnConfiguration">
++    <configuration />
++  </component>
+   <component name="TaskManager">
+     <task active="true" id="Default" summary="Default task">
+       <changelist id="a588c553-43b9-4bca-a4fc-f912da2baec7" name="Default Changelist" comment="" />
+@@ -58,6 +67,7 @@
+         </entry>
+       </map>
+     </option>
++    <option name="oldMeFiltersMigrated" value="true" />
+   </component>
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="MySqlDaoFactory" />
