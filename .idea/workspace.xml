@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a588c553-43b9-4bca-a4fc-f912da2baec7" name="Default Changelist" comment="Tools Dernière Fonction Parenthèse">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_05_2021_19_32_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_05_2021_19_32__Default_Changelist_.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/calculatrice/src/main/webapp/JSP/resultat.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calculatrice/src/main/resources/struts.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/calculatrice/src/main/webapp/JSP/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/calculatrice/src/main/webapp/JSP/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calculatrice/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/calculatrice/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,7 +40,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/OneDrive/Documents/apache-tomcat-9.0.46" />
+    <property name="last_opened_file_path" value="$USER_HOME$/OneDrive/Documents/bank" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -53,28 +52,26 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="Unnamed" type="com.poratu.idea.plugins.tomcat" factoryName="SMART_TOMCAT_FACTORY" nameIsGenerated="true">
-      <option name="adminPort" value="8005" />
+      <option name="adminPort" value="8006" />
       <option name="contextPath" value="/CPOA2021_SIBILLE" />
       <option name="docBase" value="E:\Users\Gaetan\CPOA2021_SIBILLE\calculatrice\src\main\webapp" />
       <option name="envOptions">
         <map />
       </option>
       <option name="passParentEnvironmentVariables" value="true" />
-      <option name="port" value="8080" />
+      <option name="port" value="8081" />
       <option name="tomcatInfo">
         <TomcatInfo>
           <option name="name" value="Apache Tomcat/9.0.46" />
@@ -92,9 +89,7 @@
       <option name="adminPort" value="8005" />
       <option name="contextPath" value="/CPOA2021_SIBILLE" />
       <option name="docBase" value="E:\Users\Gaetan\CPOA2021_SIBILLE\calculatrice\src\main\webapp" />
-      <option name="envOptions">
-        <map />
-      </option>
+      <option name="envOptions" />
       <option name="passParentEnvironmentVariables" value="true" />
       <option name="port" value="8080" />
       <option name="tomcatInfo">
@@ -122,7 +117,9 @@
       <workItem from="1620995124463" duration="752000" />
       <workItem from="1621364154681" duration="652000" />
       <workItem from="1621699828063" duration="8966000" />
-      <workItem from="1621968214772" duration="2168000" />
+      <workItem from="1621968214772" duration="2794000" />
+      <workItem from="1622041763247" duration="289000" />
+      <workItem from="1622098327150" duration="1444000" />
     </task>
     <task id="LOCAL-00001" summary="MySqlDaoFactory">
       <created>1620996803715</created>
@@ -166,7 +163,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621713158288</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Calculatrice HTML ok">
+      <created>1621970425422</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1621970425422</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -188,7 +192,8 @@
     <MESSAGE value="MySqlDaoFactory" />
     <MESSAGE value="Calculator jsp" />
     <MESSAGE value="Tools Dernière Fonction Parenthèse" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tools Dernière Fonction Parenthèse" />
+    <MESSAGE value="Calculatrice HTML ok" />
+    <option name="LAST_COMMIT_MESSAGE" value="Calculatrice HTML ok" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

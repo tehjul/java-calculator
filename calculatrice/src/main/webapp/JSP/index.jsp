@@ -1,20 +1,18 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Calculator</title>
-    <link rel="stylesheet" type="text/css" href="calculator.css"/>
+    <title>Calculatrice</title>
 </head>
 <body>
 <h2>NEXT BSC CRYPTO GEM !!! EXPECTED x100 MINIMUM !!! DONT MISS THE TRAIN</h2>
-    <form method="get" action="">
-        <h2>Tapez votre calcul</h2>
-        <input type="text" name="numbers" id="expresion" size="41"/><br>
-        <label for="expresion"></label>
-        <button type="button" size="41">Resultat</button><br>
-        <label for="result"></label>
-        <input type="text" name="numbers" id="result" size="41" readonly/>
-    </form>
+    <s:form name="calculate" method="POST" action="dao.controleur.Mathcontroleur.runCalcul.action">
+        <s:textfield label="Expression" name="expression" />
+        <s:submit name="submit" />
+    </s:form>
 
 </body>
 </html>
