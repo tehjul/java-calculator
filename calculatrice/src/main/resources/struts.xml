@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+
+<struts>
+    <!-- ************************************************ -->
+    <!-- * Fichier de configuration du Framework STRUTS * -->
+    <!-- ************************************************ -->
+
+    <!-- Permet d'activer le mode de developpement. Celui-ci donne des informations
+        supplémentaires. -->
+    <constant name="struts.devMode" value="true" />
+
+    <package name="com.iut.as2021" extends="struts-default">
+
+        <!-- Action générique ou dynamique -->
+        <!-- 1er paramètre indique le chemin du package -->
+        <!-- 2ème paramètre indique la class elle-même -->
+        <!-- 3ème paramètre indique la méthode à lancer -->
+        <!-- Un succès redirige vers une page comportant le nom de la class -->
+        <!-- Un echec redirige vers une page comportant le nom de la class prefixée
+            par '-error' -->
+        <!-- Toutes les combinaisons sont donc possibles -->
+        <action name="go"
+                class="com.iut.as.controller.LoginController">
+            <result name="success">JSP/go.jsp</result>
+        </action>
+
+
+        <action name="retourAccueil"
+                class="com.iut.as.controller.LoginController">
+            <result name="success">JSP/retourAccueil.jsp</result>
+        </action>
+
+        <action name="*.*.*" class="com.iut.as.{1}.{2}" method="{3}">
+            <result name="SUCCESS">/JSP/{2}.jsp</result>
+            <result name="SUCCESSMANAGER">/JSP/{2}-Manager.jsp</result>
+            <result name="ERROR">/JSP/{2}-error.jsp</result>
+            <result name="LISTCLIENTS">/JSP/ListClients.jsp</result>
+            <result>/JSP/{2}.jsp</result>
+        </action>
+
+    </package>
+</struts>
