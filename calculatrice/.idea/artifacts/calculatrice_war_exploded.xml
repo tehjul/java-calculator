@@ -14,6 +14,8 @@
           <element id="module-output" name="calculatrice" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.webjars:bootstrap:5.0.1" />
+          <element id="library" level="project" name="Maven: org.webjars:popper.js:2.9.2" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.11" />
           <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:2.6.0" />
           <element id="library" level="project" name="Maven: org.apache.struts:struts2-core:2.1.6" />
