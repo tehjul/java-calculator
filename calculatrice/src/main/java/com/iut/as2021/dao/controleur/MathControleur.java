@@ -8,7 +8,6 @@ public class MathControleur extends ActionSupport {
 
     private String expression;
     private MathResultat manager;
-    private String result;
 
     public String getExpression() {
         return expression;
@@ -16,11 +15,6 @@ public class MathControleur extends ActionSupport {
 
     public void setExpression(String expression) {
         this.expression = expression;
-    }
-
-    public void setResult(String result)
-    {
-        this.result = result;
     }
 
     public String runCalcul() throws MathsExceptions {
