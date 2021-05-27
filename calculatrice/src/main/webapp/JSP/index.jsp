@@ -13,8 +13,10 @@
 
 
 <s:form action = "click" method = "post" name = "form1">
+
 <s:label value = "Entrez votre calcul: " name = "l1" />
 <s:textfield name = "expression"/>
+
 <s:submit value="Résultat" name = "submit" />
 </s:form>
 
