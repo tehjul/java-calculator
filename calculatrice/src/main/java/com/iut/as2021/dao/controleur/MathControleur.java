@@ -20,6 +20,7 @@ public class MathControleur extends ActionSupport {
     public String runCalcul() throws MathsExceptions {
         // code horrible !
         manager = new MathResultat(expression);
-        return String.valueOf(manager.getValue());
+        //return String.valueOf(manager.getValue());
+       return ActionSupport.SUCCESS;
     }
 }
