@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a588c553-43b9-4bca-a4fc-f912da2baec7" name="Default Changelist" comment="Tools Dernière Fonction Parenthèse">
-      <change afterPath="$PROJECT_DIR$/calculatrice/src/main/webapp/JSP/resultat.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calculatrice/src/main/webapp/JSP/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/calculatrice/src/main/webapp/JSP/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calculatrice/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/calculatrice/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-    </list>
+    <list default="true" id="a588c553-43b9-4bca-a4fc-f912da2baec7" name="Default Changelist" comment="Tools Dernière Fonction Parenthèse" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -52,24 +47,11 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Unnamed" type="com.poratu.idea.plugins.tomcat" factoryName="SMART_TOMCAT_FACTORY" nameIsGenerated="true">
       <option name="adminPort" value="8006" />
       <option name="contextPath" value="/CPOA2021_SIBILLE" />
       <option name="docBase" value="E:\Users\Gaetan\CPOA2021_SIBILLE\calculatrice\src\main\webapp" />
-      <option name="envOptions">
-        <map />
-      </option>
+      <option name="envOptions" />
       <option name="passParentEnvironmentVariables" value="true" />
       <option name="port" value="8081" />
       <option name="tomcatInfo">
@@ -120,6 +102,7 @@
       <workItem from="1621968214772" duration="2794000" />
       <workItem from="1622041763247" duration="289000" />
       <workItem from="1622098327150" duration="1444000" />
+      <workItem from="1622108838705" duration="2000" />
     </task>
     <task id="LOCAL-00001" summary="MySqlDaoFactory">
       <created>1620996803715</created>

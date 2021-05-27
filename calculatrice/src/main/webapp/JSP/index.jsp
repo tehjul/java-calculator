@@ -10,13 +10,14 @@
 </head>
 <body>
 <h2>NEXT BSC CRYPTO GEM !!! EXPECTED x100 MINIMUM !!! DONT MISS THE TRAIN</h2>
-    <s:form name="calculate" method="POST" action="dao.controleur.Mathcontroleur.runCalcul.action">
-        <s:textfield label="Expression" name="expression" />
-        <s:submit name="submit" />
-    </s:form>
+
+
+<s:form action = "click" method = "post" name = "form1">
+<s:label value = "Entrez votre calcul: " name = "l1" />
+<s:textfield name = "expression"/>
+<s:submit value="Résultat" name = "submit" />
+</s:form>
 
 </body>
 </html>
-
-
 

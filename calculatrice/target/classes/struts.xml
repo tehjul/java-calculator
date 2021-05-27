@@ -23,26 +23,7 @@
         <!-- Un echec redirige vers une page comportant le nom de la class prefixée
             par '-error' -->
         <!-- Toutes les combinaisons sont donc possibles -->
-    <package name="com.iut.as" namespace="/"
-             extends="struts-default">
 
-        <!-- Action générique ou dynamique -->
-        <!-- 1er paramètre indique le chemin du package -->
-        <!-- 2ème paramètre indique la class elle-même -->
-        <!-- 3ème paramètre indique la méthode à lancer -->
-        <!-- Un succès redirige vers une page comportant le nom de la class -->
-        <!-- Un echec redirige vers une page comportant le nom de la class prefixée
-            par '-error' -->
-        <!-- Toutes les combinaisons sont donc possibles -->
-        <action name="resultat"
-                class="com.iut.as.controller.MathController">
-            <result name="resultat">JSP/resultat.jsp</result>
-        </action>
 
-        <action name="*.*.*" class="com.iut.as2021.{1}.{2}" method="{3}">
-            <result name="RESULTAT">/JSP/{2}.jsp</result>
-            <result name="ERROR">/JSP/{2}-error.jsp</result>
-            <result>/JSP/{2}.jsp</result>
-        </action>
     </package>
 </struts>
