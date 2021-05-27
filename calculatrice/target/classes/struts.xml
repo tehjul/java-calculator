@@ -11,7 +11,11 @@
 
     <!-- Permet d'activer le mode de developpement. Celui-ci donne des informations
         supplémentaires. -->
+<<<<<<< HEAD
     <constant name="struts.devMode" value="false" />
+=======
+    <constant name="struts.devMode" value="true" />
+>>>>>>> origin/main
 
     <package name="com.iut.as2021" extends="struts-default">
 
@@ -23,7 +27,29 @@
         <!-- Un echec redirige vers une page comportant le nom de la class prefixée
             par '-error' -->
         <!-- Toutes les combinaisons sont donc possibles -->
+<<<<<<< HEAD
 
 
+=======
+        <action name="go"
+                class="com.iut.as.controller.LoginController">
+            <result name="success">JSP/go.jsp</result>
+        </action>
+
+
+        <action name="retourAccueil"
+                class="com.iut.as.controller.LoginController">
+            <result name="success">JSP/retourAccueil.jsp</result>
+        </action>
+
+        <action name="*.*.*" class="com.iut.as.{1}.{2}" method="{3}">
+            <result name="SUCCESS">/JSP/{2}.jsp</result>
+            <result name="SUCCESSMANAGER">/JSP/{2}-Manager.jsp</result>
+            <result name="ERROR">/JSP/{2}-error.jsp</result>
+            <result name="LISTCLIENTS">/JSP/ListClients.jsp</result>
+            <result>/JSP/{2}.jsp</result>
+        </action>
+
+>>>>>>> origin/main
     </package>
 </struts>
