@@ -7,6 +7,7 @@ import com.opensymphony.xwork2.ActionSupport;
 public class MathControleur extends ActionSupport {
 
     private String expression;
+    private double resultat;
     private MathResultat manager;
 
     public String getExpression() {
@@ -17,10 +18,19 @@ public class MathControleur extends ActionSupport {
         this.expression = expression;
     }
 
+    public double getResultat() {
+        return resultat;
+    }
+
+    public void setResultat(double resultat) {
+        this.resultat = resultat;
+    }
+
     public String runCalcul() throws MathsExceptions {
         // code horrible !
         manager = new MathResultat(expression);
+        resultat = manager.calculate();
         //return String.valueOf(manager.getValue());
-       return ActionSupport.SUCCESS;
+        return ActionSupport.SUCCESS;
     }
 }

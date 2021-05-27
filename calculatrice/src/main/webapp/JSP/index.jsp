@@ -9,12 +9,13 @@
     <title>Calculatrice</title>
 </head>
 <body>
-<h2>NEXT BSC CRYPTO GEM !!! EXPECTED x100 MINIMUM !!! DONT MISS THE TRAIN</h2>
+<h2>TO THE MOON !</h2>
 
 
 <s:form action = "click" method = "post" name = "form1">
 <s:label value = "Entrez votre calcul: " name = "l1" />
-<s:textfield name = "expression"/>
+<s:textfield name="expression" label="expression"/>
+<s:textfield name="resultat" label="res"/>
 <s:submit value="Résultat" name = "submit" />
 </s:form>
 

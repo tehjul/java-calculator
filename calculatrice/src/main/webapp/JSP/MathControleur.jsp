@@ -10,8 +10,7 @@
 </head>
 
 <h1>
-
-    Le résultat de votre calcul <s:property value = "expression"/> est : <s:property value = "result"/>
+    Le résultat de votre calcul <s:property value="expression"/> est <s:property value="resultat"/>
     <br>
 
 </h1>
