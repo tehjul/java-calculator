@@ -5,11 +5,11 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Calculatrice</title>
+    <title>Calculator</title>
 </head>
 <body>
 <h1 style="text-align: center;">THE CALCULATOR</h1>
-<img src="https://www.involve.me/assets/images/blog/how-to-create-a-simple-price-calculator-and-capture-more-leads/calculator-M.png" style="display: block; margin: auto">
+<img src="https://www.involve.me/assets/images/blog/how-to-create-a-simple-price-calculator-and-capture-more-leads/calculator-M.png" style="display: block; margin: auto" alt="calculator">
 
     <s:form action="controleur.MathControleur.runCalcul.action" method="post" name="form1">
         <s:label value = "Entrez votre calcul: " name = "l1" />
