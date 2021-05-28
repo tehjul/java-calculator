@@ -9,8 +9,9 @@
 </head>
 <body>
 <h1>
-    <s:property value="expression"/>
-    <br>
+    <s:property value="error"/>
+    <br/>
+    Veuillez réessayer.
 
 </h1>
 

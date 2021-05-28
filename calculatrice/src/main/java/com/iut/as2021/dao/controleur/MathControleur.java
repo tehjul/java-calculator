@@ -8,6 +8,7 @@ public class MathControleur extends ActionSupport {
 
     private String expression;
     private double resultat;
+    private String error;
     private MathResultat manager;
 
     public String getExpression() {
@@ -26,9 +27,23 @@ public class MathControleur extends ActionSupport {
         this.resultat = resultat;
     }
 
-    public String runCalcul() throws MathsExceptions {
-        manager = new MathResultat(expression);
-        resultat = manager.calculate();
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+
+    public String runCalcul() {
+        try {
+            manager = new MathResultat(expression);
+            resultat = manager.calculate();
+        } catch (MathsExceptions mathsExceptions) {
+            error = mathsExceptions.getMessage();
+            return ActionSupport.ERROR;
+        }
+
         return ActionSupport.SUCCESS;
     }
 }
