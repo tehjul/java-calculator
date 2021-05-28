@@ -9,7 +9,7 @@
 </head>
 <body>
 <h1>
-    Le résultat de votre calcul <s:property value="expression"/> est <s:property value="resultat"/>
+    <s:property value="expression"/>
     <br>
 
 </h1>
