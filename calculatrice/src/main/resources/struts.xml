@@ -19,13 +19,9 @@
                 class="com.iut.as2021.dao.controleur.MathControleur">
             <result name="success">/JSP/MathControleur.jsp</result>
         </action>
-
         <action name="*.*.*" class="com.iut.as2021.dao.{1}.{2}" method="{3}">
             <result name="success">/JSP/{2}.jsp</result>
-            <result name="SUCCESSMANAGER">/JSP/{2}-Manager.jsp</result>
             <result name="error">/JSP/{2}-error.jsp</result>
-            <result name="LISTCLIENTS">/JSP/ListClients.jsp</result>
-
         </action>
 
     </package>
