@@ -10,7 +10,7 @@
 
   <name>calculatrice</name>
   <!-- FIXME change it to the project's website -->
-  <url>http://localhost:8080/webapp/</url>
+  <url>http://localhost:8080/calculatrice/</url>
 
   <packaging>war</packaging>
 
@@ -63,6 +63,22 @@
       <version>3.1.0</version>
       <scope>provided</scope>
     </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+      <version>4.3.16.RELEASE</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring-oxm -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-oxm</artifactId>
+      <version>4.3.16.RELEASE</version>
+    </dependency>
+
+
 
   </dependencies>
 

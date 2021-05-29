@@ -1,15 +1,29 @@
 package com.iut.as2021.dao.controleur;
 
-import com.iut.as2021.exceptions.MathsExceptions;
-import com.iut.as2021.metier.MathResultat;
+import com.iut.as2021.facade.CalculatriceManager;
 import com.opensymphony.xwork2.ActionSupport;
+import org.springframework.beans.factory.xml.XmlBeanFactory;
+import org.springframework.core.io.ClassPathResource;
+
+
 
 public class MathControleur extends ActionSupport {
 
     private String expression;
-    private double resultat;
+    private String resultat;
     private String error;
-    private MathResultat manager;
+
+    private static final String APPLICATION_CONTEXT_FILE = "applicationContext.xml";
+
+    public MathControleur() {
+
+        ClassPathResource cp = new ClassPathResource(APPLICATION_CONTEXT_FILE);
+        XmlBeanFactory factory = new XmlBeanFactory(cp);
+
+        this.manager = (CalculatriceManager) factory.getBean("calculatriceManager");
+    }
+
+    private CalculatriceManager manager;
 
     public String getExpression() {
         return expression;
@@ -19,11 +33,11 @@ public class MathControleur extends ActionSupport {
         this.expression = expression;
     }
 
-    public double getResultat() {
+    public String getResultat() {
         return resultat;
     }
 
-    public void setResultat(double resultat) {
+    public void setResultat(String resultat) {
         this.resultat = resultat;
     }
 
@@ -37,13 +51,12 @@ public class MathControleur extends ActionSupport {
 
     public String runCalcul() {
         try {
-            manager = new MathResultat(expression);
-            resultat = manager.calculate();
-        } catch (MathsExceptions mathsExceptions) {
-            error = mathsExceptions.getMessage();
+            resultat = manager.calculer(expression);
+            manager.saveResult();
+            return ActionSupport.SUCCESS;
+        } catch (Exception e) {
+            error = e.getMessage();
             return ActionSupport.ERROR;
         }
-
-        return ActionSupport.SUCCESS;
     }
 }
