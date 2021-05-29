@@ -13,7 +13,7 @@
 
     <s:form action="controleur.MathControleur.runCalcul.action" method="post" name="form1" cssStyle="text-align: center">
         <s:label value = "Entrez votre calcul: " name = "l1" />
-        <s:textfield name="expression" label="expression"/>
+        <s:textfield name="expression" />
         <s:submit value="Résultat" name = "submit" />
     </s:form>
 
