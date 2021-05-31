@@ -4,6 +4,6 @@ public class MySqlDaoFactory extends DaoFactory {
 
     @Override
     public IDaoMathResult getDaoMathResult() {
-        return MySqlDAO.getInstance();
+        return MySqlDao.getInstance();
     }
 }

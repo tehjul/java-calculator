@@ -8,12 +8,12 @@ import com.iut.as2021.dao.connexion.Connexion;
 import com.iut.as2021.exceptions.MathsExceptions;
 import com.iut.as2021.metier.MathResultat;
 
-public class MySqlDAO implements IDaoMathResult {
+public class MySqlDao implements IDaoMathResult {
 
     private static IDaoMathResult instance;
     private Connection connection = null;
 
-    private MySqlDAO() {
+    private MySqlDao() {
         try{
             connection = Connexion.getInstance().creeConnexion();
         } catch (SQLException e) {
@@ -24,7 +24,7 @@ public class MySqlDAO implements IDaoMathResult {
 
     public static IDaoMathResult getInstance(){
         if (instance == null){
-            return new MySqlDAO();
+            return new MySqlDao();
         }
         return instance;
     }

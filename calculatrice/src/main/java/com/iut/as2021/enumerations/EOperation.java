@@ -7,8 +7,12 @@ public enum EOperation {
     DIVISION(2, "/"),
     ADDITION(3, "+"),
     SOUSTRACTION(4, "-"),
-    OPEN_BRACKET(5, "["),
-    CLOSE_BRACKET(6, "]");
+    CLOSE_BRACKET(5, "]"),
+    CLOSE_BRACKET_M(6, "]*"),
+    CLOSE_BRACKET_D(7, "]/"),
+    CLOSE_BRACKET_A(8, "]+"),
+    CLOSE_BRACKET_S(9, "]-"),
+    OPEN_BRACKET(10, "[");
 
     private int code;
     private String operateur;

@@ -14,18 +14,18 @@ import static com.iut.as2021.dao.ETypeDao.MYSQL;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.anyInt;
 
-public class MySqlDAOTest {
+public class MySqlDaoTest {
 
     // Sans mockito :
     private IDaoMathResult dao;
 
     // Avec mockito :
-    private MySqlDAO daoMock;
+    private MySqlDao daoMock;
 
     @Before
     public void setUp(){
         dao = getDAOFactory(MYSQL).getDaoMathResult();
-        daoMock = Mockito.mock(MySqlDAO.class);
+        daoMock = Mockito.mock(MySqlDao.class);
     }
 
     @Test

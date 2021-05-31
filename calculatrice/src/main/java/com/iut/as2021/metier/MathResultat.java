@@ -1,15 +1,11 @@
 package com.iut.as2021.metier;
 
-import static com.iut.as2021.enumerations.EOperation.ADDITION;
-import static com.iut.as2021.enumerations.EOperation.CLOSE_BRACKET;
-import static com.iut.as2021.enumerations.EOperation.DIVISION;
-import static com.iut.as2021.enumerations.EOperation.INCONNUE;
-import static com.iut.as2021.enumerations.EOperation.MULTIPLICATION;
-import static com.iut.as2021.enumerations.EOperation.OPEN_BRACKET;
-import static com.iut.as2021.enumerations.EOperation.SOUSTRACTION;
+import static com.iut.as2021.enumerations.EDirection.*;
+import static com.iut.as2021.enumerations.EOperation.*;
 import static com.iut.as2021.tools.IutTools.getLeftExpression;
 import static com.iut.as2021.tools.IutTools.getRightExpression;
 
+import com.iut.as2021.enumerations.EDirection;
 import com.iut.as2021.enumerations.EOperation;
 import com.iut.as2021.exceptions.MathsExceptions;
 import com.iut.as2021.interfaces.IMaths;
@@ -31,17 +27,18 @@ public class MathResultat {
     private int id;
     private String expression;
 
+    private int level;
+    private EDirection direction;
+
     private MathResultat leftExpression;
     private MathResultat rightExpression;
 
     private static final String ZERO = "0000000";
+    private static final String SPACE = "\\s";
+    private static final String EMPTY_STRING = "";
 
     public String getExpression() {
         return expression;
-    }
-
-    public int getId() {
-        return id;
     }
 
     protected String getLeftExp() {
@@ -64,20 +61,46 @@ public class MathResultat {
 
     public double getValue() throws MathsExceptions {
         if (INCONNUE.equals(operation)) {
+            if (getPositionFromOperation(OPEN_BRACKET) >= 0) {
+                expression = expression.replaceAll("\\" + OPEN_BRACKET.getOperateur(), EMPTY_STRING);
+            }
+            if (getPositionFromOperation(CLOSE_BRACKET) >= 0) {
+                expression = expression.replaceAll("\\" + CLOSE_BRACKET.getOperateur(), EMPTY_STRING);
+            }
             return Integer.valueOf(expression);
         }
         return calculate();
     }
 
     public MathResultat(String expression) throws MathsExceptions {
+        this(expression, 0, INIT);
+    }
+
+    public MathResultat(String expression, int level, EDirection direction) throws MathsExceptions {
         this.operation = INCONNUE;
+        this.level = level;
+        this.direction = direction;
         if (expression == null || expression.isEmpty()) {
             this.expression = ZERO;
         } else {
+            this.level++;
+            expression = expression.replaceAll(SPACE, EMPTY_STRING);
             expression = expression.replaceAll("\\(", OPEN_BRACKET.getOperateur()).replaceAll("\\)",
                     CLOSE_BRACKET.getOperateur());
+            if (level == 0) {
+                System.out.println("\n" + "******* START ******* *******");
+            }
+            System.out.println("Processing ... : " + expression);
             this.expression = expression;
             switchLeftAndRightExpression();
+        }
+    }
+
+    private void switchLeftAndRightExpression() throws MathsExceptions {
+        int pos = getOperatorPos();
+        if (!INCONNUE.equals(operation)) {
+            leftExpression = new MathResultat(getLeftExpression(expression, pos), level, GAUCHE);
+            rightExpression = new MathResultat(getRightExpression(expression, pos), level, DROITE);
         }
     }
 
@@ -87,7 +110,6 @@ public class MathResultat {
         }
         double leftVal = 0;
         double rightVal = 0;
-        EOperation internalOp = INCONNUE;
         if (leftExpression != null) {
             leftVal = leftExpression.getValue();
         }
@@ -100,18 +122,6 @@ public class MathResultat {
             case ADDITION:
             case SOUSTRACTION:
                 return calculate(operation, leftVal, rightVal);
-            case OPEN_BRACKET:
-                internalOp = getOpeAccordingOperateur(getLeftExp(), true);
-                if (INCONNUE.equals(internalOp) || leftVal == 0) {
-                    return rightVal;
-                }
-                return calculate(internalOp, leftVal, rightVal);
-            case CLOSE_BRACKET:
-                internalOp = getOpeAccordingOperateur(getRightExp(), false);
-                if (INCONNUE.equals(internalOp) || rightVal == 0) {
-                    return leftVal;
-                }
-                return calculate(internalOp, leftVal, rightVal);
             default:
                 throw new MathsExceptions("Operateur mathématique inconnu !");
         }
@@ -119,33 +129,70 @@ public class MathResultat {
 
     private double calculate(EOperation ope, double leftVal, double rightVal) throws MathsExceptions {
         this.maths = new Maths();
+        double resultat = 0;
         switch (ope) {
             case MULTIPLICATION:
-                return maths.multiplication((int) leftVal, (int) rightVal);
+                resultat = maths.multiplication((int) leftVal, (int) rightVal);
+                break;
             case DIVISION:
-                return maths.division((int) leftVal, (int) rightVal);
+                resultat = maths.division((int) leftVal, (int) rightVal);
+                break;
             case ADDITION:
-                return maths.addition((int) leftVal, (int) rightVal);
+                resultat = maths.addition((int) leftVal, (int) rightVal);
+                break;
             case SOUSTRACTION:
-                return maths.soustration((int) leftVal, (int) rightVal);
+                resultat = maths.soustration((int) leftVal, (int) rightVal);
+                break;
             default:
                 throw new MathsExceptions("Operateur non autorisé dans cette fonction !");
         }
+        displayToConsole(leftVal, rightVal, resultat);
+        return resultat;
     }
 
-    private void switchLeftAndRightExpression() throws MathsExceptions {
-        int pos = getPosition();
-        if (!INCONNUE.equals(operation) && pos >= 0) {
-            leftExpression = new MathResultat(getLeftExpression(expression, pos));
-            rightExpression = new MathResultat(getRightExpression(expression, pos));
+    private void displayToConsole(double leftVal, double rightVal, double resultat) {
+        System.out.println("- ------ calcul de l'arbre binaire ------ -");
+        System.out.println("-> " + level + " / direction : " + direction);
+        System.out.println("- Operation : " + operation);
+        System.out.println("- Gauche value : " + leftVal);
+        System.out.println("- Droite value : " + rightVal);
+        System.out.println("-> Le Resultat est = " + resultat);
+        if (level == 1) {
+            System.out.println("******* END ******* ******* FINAL : " + resultat);
         }
     }
 
-    private int getPosition() {
-        int pos = getPositionFromOperation(OPEN_BRACKET);
-        if (pos < 0) {
-            pos = getPositionFromOperation(CLOSE_BRACKET);
+    private int getOperatorPos() {
+        return findOperator(findBrackets());
+    }
+
+    private int findBrackets() {
+        int pos = getPositionFromOperation(CLOSE_BRACKET_A);
+        if (pos >= 0) {
+            this.operation = ADDITION;
+        } else {
+            pos = getPositionFromOperation(CLOSE_BRACKET_S);
+            if (pos >= 0) {
+                this.operation = SOUSTRACTION;
+            } else {
+                pos = getPositionFromOperation(CLOSE_BRACKET_M);
+                if (pos >= 0) {
+                    this.operation = MULTIPLICATION;
+                } else {
+                    pos = getPositionFromOperation(CLOSE_BRACKET_D);
+                    if (pos >= 0) {
+                        this.operation = DIVISION;
+                    }
+                }
+            }
         }
+        if (pos >= 0) {
+            pos++;
+        }
+        return pos;
+    }
+
+    private int findOperator(int pos) {
         if (pos < 0) {
             pos = getPositionFromOperation(ADDITION);
         }
@@ -169,27 +216,7 @@ public class MathResultat {
         return pos;
     }
 
-    private EOperation getOpeAccordingOperateur(String expression, boolean left) {
-        String operateur = null;
-        if (left) {
-            operateur = expression.substring(expression.length() - 1);
-        } else {
-            operateur = expression.substring(0, 1);
-        }
-        if (operateur != null && !operateur.isEmpty()) {
-            if (ADDITION.getOperateur().equals(operateur)) {
-                return ADDITION;
-            }
-            if (SOUSTRACTION.getOperateur().equals(operateur)) {
-                return SOUSTRACTION;
-            }
-            if (MULTIPLICATION.getOperateur().equals(operateur)) {
-                return MULTIPLICATION;
-            }
-            if (DIVISION.getOperateur().equals(operateur)) {
-                return DIVISION;
-            }
-        }
-        return INCONNUE;
+    public int getId() {
+        return this.id;
     }
 }

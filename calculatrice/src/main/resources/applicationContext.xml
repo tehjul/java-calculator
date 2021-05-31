@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+    <!-- ************************************************************ -->
+    <!-- * Fichier de configuration utilisé par le framework SPRING * -->
+    <!-- ************************************************************ -->
+
+    <!-- ============= Modele ============= -->
+
+    <!-- Injection des managers dans la facade par le constructor -->
+    <bean id="calculatriceController"
+          class="com.iut.as2021.controleur.CalculatriceController">
+
+    </bean>
+
+    <bean id="calculatriceManager"
+          class="com.iut.as2021.facade.CalculatriceManager">
+        <constructor-arg ref="dao" />
+    </bean>
+
+    <!-- Injection de la Dao dans le BankManager par le setter -->
+    <bean id="dao" class="com.iut.as2021.dao.MySqlDao">
+        <!-- <property name="dao" ref="daoHibernate" /> -->
+    </bean>
+
+
+</beans>

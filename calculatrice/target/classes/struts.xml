@@ -16,10 +16,10 @@
     <package name="com.iut.as2021" namespace="/" extends="struts-default">
 
         <action name="click"
-                class="com.iut.as2021.dao.controleur.MathControleur">
+                class="com.iut.as2021.controleur.CalculatriceController">
             <result name="success">/JSP/MathControleur.jsp</result>
         </action>
-        <action name="*.*.*" class="com.iut.as2021.dao.{1}.{2}" method="{3}">
+        <action name="*.*.*" class="com.iut.as2021.{1}.{2}" method="{3}">
             <result name="success">/JSP/{2}.jsp</result>
             <result name="error">/JSP/{2}-error.jsp</result>
         </action>

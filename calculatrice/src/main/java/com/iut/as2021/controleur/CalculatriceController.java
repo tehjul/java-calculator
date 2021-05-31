@@ -1,29 +1,33 @@
-package com.iut.as2021.dao.controleur;
+package com.iut.as2021.controleur;
 
 import com.iut.as2021.facade.CalculatriceManager;
 import com.opensymphony.xwork2.ActionSupport;
-import org.springframework.beans.factory.xml.XmlBeanFactory;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import static com.iut.as2021.config.BeanManager.getNewBean;
 
 
+public class CalculatriceController extends ActionSupport {
 
-public class MathControleur extends ActionSupport {
+    private static final long serialVersionUID = 1L;
 
     private String expression;
     private String resultat;
     private String error;
 
-    private static final String APPLICATION_CONTEXT_FILE = "applicationContext.xml";
+    private static final String MANAGER_NAME = "calculatriceManager";
 
-    public MathControleur() {
+    @Autowired
+    private CalculatriceManager manager;
 
-        ClassPathResource cp = new ClassPathResource(APPLICATION_CONTEXT_FILE);
-        XmlBeanFactory factory = new XmlBeanFactory(cp);
-
-        this.manager = (CalculatriceManager) factory.getBean("calculatriceManager");
+    public CalculatriceController() {
+        if (this.manager == null) {
+            System.out.println("Injection manuelle ...");
+            this.manager = (CalculatriceManager) getNewBean(MANAGER_NAME);
+        }
     }
 
-    private CalculatriceManager manager;
+
 
     public String getExpression() {
         return expression;
@@ -55,6 +59,7 @@ public class MathControleur extends ActionSupport {
             manager.saveResult();
             return ActionSupport.SUCCESS;
         } catch (Exception e) {
+            System.out.println("Il y a une erreur ..");
             error = e.getMessage();
             return ActionSupport.ERROR;
         }

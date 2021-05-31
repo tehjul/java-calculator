@@ -41,12 +41,11 @@ public class Connexion {
         try {
             FileInputStream source = new FileInputStream(fichier);
             p.loadFromXML(source);
-            this.url = "jdbc:mysql://" + p.getProperty("url") + ":" + p.getProperty("port") + "/" + p.getProperty("bdd") + "?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC";
+            this.url = "jdbc:mysql://" + p.getProperty("url") + ":" + p.getProperty("port") + "/" + p.getProperty("bdd");
             this.login = p.getProperty("login");
             this.pwd = p.getProperty("pass");
         } catch (IOException ioe) {
             System.out.println("pb fichier properties " + ioe.getMessage());
         }
     }
-
 }
