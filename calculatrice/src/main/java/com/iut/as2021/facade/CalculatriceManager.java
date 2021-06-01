@@ -4,14 +4,15 @@ import com.iut.as2021.dao.IDaoMathResult;
 import com.iut.as2021.exceptions.MathsExceptions;
 import com.iut.as2021.metier.MathResultat;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.sql.SQLException;
 
+@Component
 public class CalculatriceManager {
 
     @Autowired
     private IDaoMathResult dao;
-
     private MathResultat calculatrice;
 
     public CalculatriceManager(IDaoMathResult dao){

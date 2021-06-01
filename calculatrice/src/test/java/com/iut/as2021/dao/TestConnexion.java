@@ -14,15 +14,15 @@ public class TestConnexion {
 
     @Test
     public void testConnexionOk() throws SQLException {
-        Connection connection = Connexion.getInstance().creeConnexion();
+        Connection connection = Connexion.creeConnexion();
         assertNotNull(connection);
         assertEquals(DB_NAME, connection.getCatalog());
     }
 
     @Test
     public void testConnexionIsSingleton() throws SQLException{
-        Connection connection1 = Connexion.getInstance().creeConnexion();
-        Connection connection2 = Connexion.getInstance().creeConnexion();
+        Connection connection1 = Connexion.creeConnexion();
+        Connection connection2 = Connexion.creeConnexion();
         assertEquals(connection1, connection2);
     }
 }

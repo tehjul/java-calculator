@@ -7,7 +7,9 @@ import java.util.List;
 import com.iut.as2021.dao.connexion.Connexion;
 import com.iut.as2021.exceptions.MathsExceptions;
 import com.iut.as2021.metier.MathResultat;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class MySqlDao implements IDaoMathResult {
 
     private static IDaoMathResult instance;
@@ -15,7 +17,7 @@ public class MySqlDao implements IDaoMathResult {
 
     private MySqlDao() {
         try{
-            connection = Connexion.getInstance().creeConnexion();
+            connection = Connexion.creeConnexion();
         } catch (SQLException e) {
             // beurk..
             System.out.println("Connexion vers la db indisponible ..");

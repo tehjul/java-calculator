@@ -1,8 +1,11 @@
 package com.iut.as2021.controleur;
 
+import com.iut.as2021.exceptions.MathsExceptions;
 import com.iut.as2021.facade.CalculatriceManager;
 import com.opensymphony.xwork2.ActionSupport;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.sql.SQLException;
 
 import static com.iut.as2021.config.BeanManager.getNewBean;
 
@@ -10,11 +13,9 @@ import static com.iut.as2021.config.BeanManager.getNewBean;
 public class CalculatriceController extends ActionSupport {
 
     private static final long serialVersionUID = 1L;
-
     private String expression;
     private String resultat;
     private String error;
-
     private static final String MANAGER_NAME = "calculatriceManager";
 
     @Autowired
@@ -26,8 +27,6 @@ public class CalculatriceController extends ActionSupport {
             this.manager = (CalculatriceManager) getNewBean(MANAGER_NAME);
         }
     }
-
-
 
     public String getExpression() {
         return expression;
@@ -58,7 +57,7 @@ public class CalculatriceController extends ActionSupport {
             resultat = manager.calculer(expression);
             manager.saveResult();
             return ActionSupport.SUCCESS;
-        } catch (Exception e) {
+        } catch (MathsExceptions | SQLException e) {
             System.out.println("Il y a une erreur ..");
             error = e.getMessage();
             return ActionSupport.ERROR;
