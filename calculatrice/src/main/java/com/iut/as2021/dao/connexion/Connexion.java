@@ -1,10 +1,13 @@
 package com.iut.as2021.dao.connexion;
 
+import com.iut.as2021.tools.Loader;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.support.PropertiesLoaderUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -29,15 +32,13 @@ public class Connexion {
     }
 
     private void litFichier() {
-        Properties p = new Properties();
-        File fichier = new File("config/bdd.properties");
         try {
-            FileInputStream source = new FileInputStream(fichier);
-            p.loadFromXML(source);
+            Class.forName("com.mysql.jdbc.Driver");
+            Properties p = Loader.getProperties("/bdd.properties");
             url = "jdbc:mysql://" + p.getProperty("url") + ":" + p.getProperty("port") + "/" + p.getProperty("bdd");
             login = p.getProperty("login");
             pwd = p.getProperty("pass");
-        } catch (IOException ioe) {
+        } catch (Exception ioe) {
             System.out.println("pb fichier properties " + ioe.getMessage());
         }
     }

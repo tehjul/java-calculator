@@ -3,12 +3,13 @@ package com.iut.as2021.controleur;
 import com.iut.as2021.exceptions.MathsExceptions;
 import com.iut.as2021.facade.CalculatriceManager;
 import com.opensymphony.xwork2.ActionSupport;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.SQLException;
 
 import static com.iut.as2021.config.BeanManager.getNewBean;
-
+import static org.apache.log4j.LogManager.getLogger;
 
 public class CalculatriceController extends ActionSupport {
 
@@ -18,11 +19,14 @@ public class CalculatriceController extends ActionSupport {
     private String error;
     private static final String MANAGER_NAME = "calculatriceManager";
 
+    private static final Logger logger = getLogger(CalculatriceController.class);
+
     @Autowired
     private CalculatriceManager manager;
 
     public CalculatriceController() {
         if (this.manager == null) {
+            logger.info("Injection manuelle ...");
             System.out.println("Injection manuelle ...");
             this.manager = (CalculatriceManager) getNewBean(MANAGER_NAME);
         }
