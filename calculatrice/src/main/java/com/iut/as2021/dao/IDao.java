@@ -13,7 +13,7 @@ public interface IDao<T> {
 
     boolean update(T object) throws SQLException;
 
-    boolean create(T object) throws SQLException;
+    boolean create(T object) throws SQLException, MathsExceptions;
 
     boolean delete(T object) throws SQLException;
 

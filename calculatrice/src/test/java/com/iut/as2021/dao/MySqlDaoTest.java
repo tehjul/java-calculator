@@ -23,7 +23,7 @@ public class MySqlDaoTest {
     private MySqlDao daoMock;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         dao = getDAOFactory(MYSQL).getDaoMathResult();
         daoMock = Mockito.mock(MySqlDao.class);
     }

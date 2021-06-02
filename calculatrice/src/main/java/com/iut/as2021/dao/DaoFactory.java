@@ -1,5 +1,7 @@
 package com.iut.as2021.dao;
 
+import java.sql.SQLException;
+
 public abstract class DaoFactory {
 
     public static DaoFactory getDAOFactory(ETypeDao cible) {

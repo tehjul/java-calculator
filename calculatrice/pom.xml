@@ -23,7 +23,8 @@
     <servlets.version>3.1.0</servlets.version>
     <junit.version>4.7</junit.version>
     <jdbc.mysql.version>5.1.49</jdbc.mysql.version>
-    <hibernate.core.version>5.4.14.Final</hibernate.core.version>
+    <hibernate.version>5.3.1.Final</hibernate.version>
+    <hibernate.validator>6.0.10.Final</hibernate.validator>
 
     <!-- Gestion de la compilation -->
     <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
@@ -64,7 +65,19 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-core</artifactId>
-      <version>${hibernate.core.version}</version>
+      <version>${hibernate.version}</version>
+    </dependency>
+    <!-- Hibernate-C3P0 (Resource Pools) Integration -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-c3p0</artifactId>
+      <version>${hibernate.version}</version>
+    </dependency>
+    <!-- Hibernate Validator -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <version>${hibernate.validator}</version>
     </dependency>
 
     <!-- Pour le moment cette version / on verra pour la migration -->

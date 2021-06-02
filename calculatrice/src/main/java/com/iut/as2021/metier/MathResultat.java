@@ -25,6 +25,7 @@ public class MathResultat {
     private IMaths maths;
 
     private int id;
+
     private String expression;
 
     private int level;
