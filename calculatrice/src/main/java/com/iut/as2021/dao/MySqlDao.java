@@ -25,9 +25,7 @@ public class MySqlDao implements IDaoMathResult {
     private MySqlDao() {
         try{
             connection = Connexion.creeConnexion();
-            //String sql = "DELETE FROM calculatrice";
-            //PreparedStatement request = connection.prepareStatement(sql);
-            //request.executeUpdate();
+            Connexion.clearDatabase();
         } catch (SQLException e) {
             // beurk..
             logger.info("Connexion vers la db indisponible");
@@ -60,7 +58,7 @@ public class MySqlDao implements IDaoMathResult {
     public List<MathResultat> getAll() throws SQLException, MathsExceptions {
         List<MathResultat> liste = new ArrayList<>();
         MathResultat m = null;
-        String sql = "SELECT expression FROM calculatrice";
+        String sql = "SELECT expression, resultat FROM calculatrice";
         PreparedStatement requete = connection.prepareStatement(sql);
         ResultSet res = requete.executeQuery(sql);
         while (res.next()) {

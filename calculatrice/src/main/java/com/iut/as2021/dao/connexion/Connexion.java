@@ -1,10 +1,9 @@
 package com.iut.as2021.dao.connexion;
 
+import com.iut.as2021.dao.MySqlDao;
 import com.iut.as2021.tools.Loader;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Properties;
 
 public class Connexion {
@@ -14,6 +13,12 @@ public class Connexion {
 
     private Connexion() {
         this.litFichier();
+    }
+
+    public static void clearDatabase() throws SQLException {
+        String sql = "DROP TABLE IF EXISTS calculatrice; CREATE TABLE calculatrice (id int(11) NOT NULL AUTO_INCREMENT, expression varchar(250) COLLATE utf8_bin DEFAULT NULL, resultat double DEFAULT NULL, date date DEFAULT NULL, PRIMARY KEY (id)) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT;";
+        PreparedStatement request = maConnexion.prepareStatement(sql);
+        request.executeUpdate();
     }
 
     public static Connection creeConnexion() throws SQLException {

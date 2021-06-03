@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <title>Calculator</title>
 </head>
-<body>
+<body style="background-color: dimgray">
 <h1 style="text-align: center">THE CALCULATOR</h1>
 <img src="https://www.involve.me/assets/images/blog/how-to-create-a-simple-price-calculator-and-capture-more-leads/calculator-M.png" style="display: block; margin: auto" alt="calculator">
     <br>
@@ -26,6 +26,10 @@
             ${error}
         </s:div>
     </s:form>
+
+    <s:div>
+
+    </s:div>
 
 </body>
 </html>
