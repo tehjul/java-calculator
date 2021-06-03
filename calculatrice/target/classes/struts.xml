@@ -20,8 +20,8 @@
             <result name="success">/JSP/MathControleur.jsp</result>
         </action>
         <action name="*.*.*" class="com.iut.as2021.{1}.{2}" method="{3}">
-            <result name="success">/JSP/{2}.jsp</result>
-            <result name="error">/JSP/{2}-error.jsp</result>
+            <result name="success">/JSP/index.jsp</result>
+            <result name="error">/JSP/index.jsp</result>
         </action>
 
     </package>
