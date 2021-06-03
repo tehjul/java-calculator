@@ -26,8 +26,7 @@ public class CalculatriceController extends ActionSupport {
 
     public CalculatriceController() {
         if (this.manager == null) {
-            logger.info("Injection manuelle ...");
-            System.out.println("Injection manuelle ...");
+            logger.info("Injection manuelle du manager");
             this.manager = (CalculatriceManager) getNewBean(MANAGER_NAME);
         }
     }

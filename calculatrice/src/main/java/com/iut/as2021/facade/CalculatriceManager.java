@@ -26,7 +26,7 @@ public class CalculatriceManager {
     public String calculer(String expression) throws MathsExceptions {
         try {
             this.calculatrice = new MathResultat(expression);
-            logger.info("test logger: result "+ calculatrice.getValue());
+            logger.info("expression saisie : " + calculatrice.getExpression() + " resultat retourné : "+ calculatrice.getValue());
             return String.valueOf(calculatrice.calculate());
         } catch (Exception e) {
             throw new MathsExceptions(e.getMessage());
@@ -35,6 +35,7 @@ public class CalculatriceManager {
 
     public boolean saveResult() throws SQLException {
         try {
+            logger.info("Sauvegarde dans la BDD");
             return dao.create(calculatrice);
         } catch (Exception e) {
             throw new SQLException(e.getMessage());

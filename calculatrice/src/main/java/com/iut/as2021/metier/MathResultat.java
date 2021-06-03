@@ -4,12 +4,15 @@ import static com.iut.as2021.enumerations.EDirection.*;
 import static com.iut.as2021.enumerations.EOperation.*;
 import static com.iut.as2021.tools.IutTools.getLeftExpression;
 import static com.iut.as2021.tools.IutTools.getRightExpression;
+import static org.apache.log4j.Logger.getLogger;
 
 import com.iut.as2021.enumerations.EDirection;
 import com.iut.as2021.enumerations.EOperation;
 import com.iut.as2021.exceptions.MathsExceptions;
+import com.iut.as2021.facade.CalculatriceManager;
 import com.iut.as2021.interfaces.IMaths;
 import com.iut.as2021.mathematics.Maths;
+import org.apache.log4j.Logger;
 
 /**
  * @Description : Classe 'récursive' permettant de créer un arbre binaire
@@ -37,6 +40,7 @@ public class MathResultat {
     private static final String ZERO = "0000000";
     private static final String SPACE = "\\s";
     private static final String EMPTY_STRING = "";
+    private static final Logger logger = getLogger(CalculatriceManager.class);
 
     public String getExpression() {
         return expression;
@@ -89,9 +93,9 @@ public class MathResultat {
             expression = expression.replaceAll("\\(", OPEN_BRACKET.getOperateur()).replaceAll("\\)",
                     CLOSE_BRACKET.getOperateur());
             if (level == 0) {
-                System.out.println("\n" + "******* START ******* *******");
+                logger.info("\n" + "******* START ******* *******");
             }
-            System.out.println("Processing ... : " + expression);
+            logger.info("Processing ... : " + expression);
             this.expression = expression;
             switchLeftAndRightExpression();
         }
@@ -152,14 +156,14 @@ public class MathResultat {
     }
 
     private void displayToConsole(double leftVal, double rightVal, double resultat) {
-        System.out.println("- ------ calcul de l'arbre binaire ------ -");
-        System.out.println("-> " + level + " / direction : " + direction);
-        System.out.println("- Operation : " + operation);
-        System.out.println("- Gauche value : " + leftVal);
-        System.out.println("- Droite value : " + rightVal);
-        System.out.println("-> Le Resultat est = " + resultat);
+        logger.info("- ------ calcul de l'arbre binaire ------ -");
+        logger.info("-> " + level + " / direction : " + direction);
+        logger.info("- Operation : " + operation);
+        logger.info("- Gauche value : " + leftVal);
+        logger.info("- Droite value : " + rightVal);
+        logger.info("-> Le Resultat est = " + resultat);
         if (level == 1) {
-            System.out.println("******* END ******* ******* FINAL : " + resultat);
+            logger.info("******* END ******* ******* FINAL : " + resultat);
         }
     }
 

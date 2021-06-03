@@ -30,7 +30,7 @@ public class MySqlDao implements IDaoMathResult {
             //request.executeUpdate();
         } catch (SQLException e) {
             // beurk..
-            logger.info("Connexion vers la db indisponible ..");
+            logger.info("Connexion vers la db indisponible");
         }
     }
 
@@ -52,7 +52,7 @@ public class MySqlDao implements IDaoMathResult {
             String expression = res.getString("expression");
             mathresultat = new MathResultat(expression);
         }
-
+        logger.info("Appel de Read by ID");
         return mathresultat;
     }
 
@@ -67,7 +67,7 @@ public class MySqlDao implements IDaoMathResult {
             m = new MathResultat(res.getString("expression"));
             liste.add(m);
         }
-
+        logger.info("Appel de getAll");
         return liste;
     }
 
@@ -96,7 +96,7 @@ public class MySqlDao implements IDaoMathResult {
         requete.setDate(4, Date.valueOf(dateTimeFormatter.format(now)));
 
         nbLignes = requete.executeUpdate();
-
+        logger.info("Appel de create");
         return nbLignes==1;
     }
 
@@ -107,7 +107,7 @@ public class MySqlDao implements IDaoMathResult {
         PreparedStatement requete = connection.prepareStatement(sql);
         requete.setInt(1, m.getId());
         nbLignes = requete.executeUpdate();
-
+        logger.info("Appel de delete");
         return nbLignes==1;
     }
 
