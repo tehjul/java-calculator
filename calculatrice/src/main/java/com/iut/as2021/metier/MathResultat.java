@@ -27,6 +27,10 @@ public class MathResultat {
     private EOperation operation;
     private IMaths maths;
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     private int id;
 
     private String expression;
@@ -41,6 +45,10 @@ public class MathResultat {
     private static final String SPACE = "\\s";
     private static final String EMPTY_STRING = "";
     private static final Logger logger = getLogger(CalculatriceManager.class);
+
+    public MathResultat() {
+
+    }
 
     public String getExpression() {
         return expression;
@@ -223,5 +231,13 @@ public class MathResultat {
 
     public int getId() {
         return this.id;
+    }
+
+    public void setOperation(EOperation operation) {
+        this.operation = operation;
+    }
+
+    public void setExpression(String expression) {
+        this.expression = expression;
     }
 }

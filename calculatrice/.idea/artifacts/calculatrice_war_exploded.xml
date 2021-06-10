@@ -53,6 +53,7 @@
           <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />
           <element id="library" level="project" name="Maven: org.apache.ant:ant:1.9.6" />
           <element id="library" level="project" name="Maven: org.apache.ant:ant-launcher:1.9.6" />
+          <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.18.20" />
         </element>
       </element>
       <element id="directory" name="META-INF">

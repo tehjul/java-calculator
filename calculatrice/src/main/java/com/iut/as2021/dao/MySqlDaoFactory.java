@@ -1,11 +1,12 @@
 package com.iut.as2021.dao;
 
-import java.sql.SQLException;
+import com.iut.as2021.dao.factory.DaoFactoryGeneric;
+import com.iut.as2021.dao.interfaces.modele.IDaoMathResultat;
 
-public class MySqlDaoFactory extends DaoFactory {
+public class MySqlDaoFactory extends DaoFactoryGeneric {
 
     @Override
-    public IDaoMathResult getDaoMathResult() {
-        return MySqlDao.getInstance();
+    public IDaoMathResultat getDaoMathResult() {
+        throw new UnsupportedOperationException();
     }
 }
