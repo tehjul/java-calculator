@@ -35,6 +35,18 @@ public class MathResultat {
 
     private String expression;
 
+    public double getResultat() {
+        return resultat;
+    }
+
+    public void setResultat(double resultat) {
+        this.resultat = resultat;
+    }
+
+    private double resultat;
+
+
+
     private int level;
     private EDirection direction;
 

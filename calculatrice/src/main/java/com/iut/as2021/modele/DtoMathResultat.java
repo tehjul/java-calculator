@@ -13,6 +13,7 @@ public class DtoMathResultat implements IDtoGeneric<MathResultat, EntityMathResu
         if (entityMathResultat != null){
             MathResultat mathResultat = new MathResultat();
             mathResultat.setExpression(entityMathResultat.getExpression());
+
             return mathResultat;
         }
         return null;
