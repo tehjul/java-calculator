@@ -18,7 +18,7 @@
 <br>
 
 <form:form action="ajoutMathResultat" method="post" modelAttribute="mathresultat" cssStyle="text-align: center; margin: auto">
-    <form:input path="expression" cssClass="form-control"/> <br> <form:errors path="expression"/>
+    <form:input path="expression" cssClass="form-control" cssStyle="width: 10%; margin: auto"/> <br> <form:errors path="expression"/>
     <button type="submit" class="btn btn-primary">Calculer</button>
 </form:form>
 ${errorMessage}
