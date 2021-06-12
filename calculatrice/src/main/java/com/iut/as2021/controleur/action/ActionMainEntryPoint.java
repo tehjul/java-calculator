@@ -22,7 +22,7 @@ public class ActionMainEntryPoint {
     private static final Logger logger = Logger.getLogger(ActionMainEntryPoint.class);
 
     private static final String REDIRECT_DEFAULT = "redirect:/";
-    private static final String MAIN_PAGE = "mainpage";
+    private static final String MAIN_PAGE = "calculatrice";
 
     @Autowired
     private CalculatriceManager manager;

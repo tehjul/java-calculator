@@ -3,7 +3,9 @@ package com.iut.as2021.modele;
 import com.iut.as2021.dao.entity.EntityMathResultat;
 import com.iut.as2021.dao.interfaces.IDtoGeneric;
 import com.iut.as2021.metier.MathResultat;
+import org.springframework.stereotype.Component;
 
+@Component
 public class DtoMathResultat implements IDtoGeneric<MathResultat, EntityMathResultat> {
 
     @Override

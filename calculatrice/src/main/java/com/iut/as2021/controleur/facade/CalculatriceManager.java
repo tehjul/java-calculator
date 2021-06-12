@@ -22,15 +22,14 @@ public class CalculatriceManager {
     @Autowired
     private IServiceMathResultat serviceMathResultat;
 
-
-    @Autowired
+/*    @Autowired
     private IDaoMathResult dao;
     private MathResultat calculatrice;
 
 
     public CalculatriceManager(IDaoMathResult dao){
         this.dao = dao;
-    }
+    }*/
 
     public List<MathResultat> getMathResultats() throws MathsTechnicalExceptions {
         logger.info(" -> Liste des MathResultat demandés par le certification manager");
@@ -60,7 +59,7 @@ public class CalculatriceManager {
         serviceMathResultat.supprimerMathResultatById(Integer.valueOf(id));
     }
 
-    public String calculer(String expression) throws MathsExceptions {
+/*    public String calculer(String expression) throws MathsExceptions {
         try {
             this.calculatrice = new MathResultat(expression);
             logger.info("expression saisie : " + calculatrice.getExpression() + " resultat retourné : "+ calculatrice.getValue());
@@ -77,6 +76,6 @@ public class CalculatriceManager {
         } catch (Exception e) {
             throw new SQLException(e.getMessage());
         }
-    }
+    }*/
 
 }
