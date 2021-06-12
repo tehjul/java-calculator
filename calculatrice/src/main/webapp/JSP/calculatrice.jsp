@@ -21,10 +21,22 @@
     <form:input path="expression" cssClass="form-control" cssStyle="width: 10%; margin: auto"/> <br> <form:errors path="expression"/>
     <button type="submit" class="btn btn-primary">Calculer</button>
 </form:form>
-${errorMessage}
+<div style="color: red; text-align: center; margin: auto">${errorMessage}</div>
+
 <br>
 
-<h2 style="text-align: center">Historique :</h2>
+<div style="margin: auto">
+    <table style="margin: auto">
+        <tr>
+            <th><strong>Historique</strong></th>
+        </tr>
+        <c:forEach items="${mathresultats}" var="mathresultat">
+            <tr>
+                <td>${mathresultat.expression}</td>
+            </tr>
+        </c:forEach>
+    </table>
+</div>
 
 </body>
 </html>
