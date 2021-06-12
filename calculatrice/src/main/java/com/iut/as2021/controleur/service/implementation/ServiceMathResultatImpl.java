@@ -9,12 +9,14 @@ import com.iut.as2021.exceptions.MathsTechnicalExceptions;
 import com.iut.as2021.metier.MathResultat;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Integer.valueOf;
 
+@Service
 public class ServiceMathResultatImpl implements IServiceMathResultat {
 
     private static Logger logger = Logger.getLogger(ServiceMathResultatImpl.class);
@@ -31,6 +33,14 @@ public class ServiceMathResultatImpl implements IServiceMathResultat {
             throw new MathsTechnicalExceptions("Attention la Dao est null ...");
         }
         this.dao = daoFactoryGeneric;
+    }
+
+    @Override
+    public void setDTO(DtoFacadeManager dtoFacadeManager) throws MathsExceptions {
+        if (dtoFacadeManager == null) {
+            throw new MathsTechnicalExceptions("Attention le DTO manager est null ...");
+        }
+        this.dto = dtoFacadeManager;
     }
 
     @Override

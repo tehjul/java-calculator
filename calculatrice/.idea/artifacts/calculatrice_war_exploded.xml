@@ -43,6 +43,8 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.3.7" />
           <element id="library" level="project" name="Maven: org.springframework:spring-oxm:5.3.7" />
           <element id="library" level="project" name="Maven: org.springframework:spring-beans:5.3.7" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-orm:5.0.7.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:5.0.7.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context:5.3.7" />
           <element id="library" level="project" name="Maven: org.springframework:spring-aop:5.3.7" />
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:5.3.7" />
@@ -54,6 +56,9 @@
           <element id="library" level="project" name="Maven: org.apache.ant:ant:1.9.6" />
           <element id="library" level="project" name="Maven: org.apache.ant:ant-launcher:1.9.6" />
           <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.18.20" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-tx:5.3.7" />
+          <element id="library" level="project" name="Maven: javax.xml.bind:jaxb-api:2.3.1" />
+          <element id="library" level="project" name="Maven: javax.activation:javax.activation-api:1.2.0" />
         </element>
       </element>
       <element id="directory" name="META-INF">

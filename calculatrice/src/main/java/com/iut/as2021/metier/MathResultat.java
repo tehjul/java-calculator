@@ -9,7 +9,7 @@ import static org.apache.log4j.Logger.getLogger;
 import com.iut.as2021.enumerations.EDirection;
 import com.iut.as2021.enumerations.EOperation;
 import com.iut.as2021.exceptions.MathsExceptions;
-import com.iut.as2021.facade.CalculatriceManager;
+import com.iut.as2021.controleur.facade.CalculatriceManager;
 import com.iut.as2021.interfaces.IMaths;
 import com.iut.as2021.mathematics.Maths;
 import org.apache.log4j.Logger;

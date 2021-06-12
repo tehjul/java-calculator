@@ -8,7 +8,7 @@ import java.util.List;
 
 import com.iut.as2021.dao.connexion.Connexion;
 import com.iut.as2021.exceptions.MathsExceptions;
-import com.iut.as2021.facade.CalculatriceManager;
+import com.iut.as2021.controleur.facade.CalculatriceManager;
 import com.iut.as2021.metier.MathResultat;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;

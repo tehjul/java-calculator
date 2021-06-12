@@ -1,14 +1,18 @@
+/*
 package com.iut.as2021.controleur;
 
+import com.iut.as2021.controleur.facade.CalculatriceManager;
 import com.iut.as2021.exceptions.MathsExceptions;
-import com.iut.as2021.facade.CalculatriceManager;
+import com.iut.as2021.exceptions.MathsTechnicalExceptions;
+import com.iut.as2021.metier.MathResultat;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.SQLException;
+import java.util.List;
 
-import static com.iut.as2021.config.BeanManager.getNewBean;
+
 import static org.apache.log4j.LogManager.getLogger;
 
 public class CalculatriceController extends ActionSupport {
@@ -17,6 +21,7 @@ public class CalculatriceController extends ActionSupport {
     private String expression;
     private String resultat;
     private String error;
+    private List<MathResultat> historique;
     private static final String MANAGER_NAME = "calculatriceManager";
 
     private static final Logger logger = getLogger(CalculatriceController.class);
@@ -66,4 +71,10 @@ public class CalculatriceController extends ActionSupport {
             return ActionSupport.ERROR;
         }
     }
+
+    public String getHistorique() throws MathsTechnicalExceptions {
+        historique = manager.getMathResultats();
+        return ActionSupport.SUCCESS;
+    }
 }
+*/

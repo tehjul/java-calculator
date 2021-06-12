@@ -1,10 +1,10 @@
 package com.iut.as2021.modele;
 
 import com.iut.as2021.dao.entity.EntityMathResultat;
-import com.iut.as2021.dao.interfaces.IdtoGeneric;
+import com.iut.as2021.dao.interfaces.IDtoGeneric;
 import com.iut.as2021.metier.MathResultat;
 
-public class DtoMathResultat implements IdtoGeneric<MathResultat, EntityMathResultat> {
+public class DtoMathResultat implements IDtoGeneric<MathResultat, EntityMathResultat> {
 
     @Override
     public MathResultat adapt(EntityMathResultat entityMathResultat) {

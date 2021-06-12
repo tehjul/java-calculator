@@ -1,3 +1,4 @@
+<!--
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -8,26 +9,29 @@
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 
-    <!-- ************************************************************ -->
-    <!-- * Fichier de configuration utilisé par le framework SPRING * -->
-    <!-- ************************************************************ -->
+    &lt;!&ndash; ************************************************************ &ndash;&gt;
+    &lt;!&ndash; * Fichier de configuration utilisé par le framework SPRING * &ndash;&gt;
+    &lt;!&ndash; ************************************************************ &ndash;&gt;
 
-    <!-- ============= Modele ============= -->
+    &lt;!&ndash; ============= Modele ============= &ndash;&gt;
 
-    <!-- Injection des managers dans la facade par le constructor -->
-    <bean id="calculatriceController"
+    &lt;!&ndash; Injection des managers dans la facade par le constructor &ndash;&gt;
+&lt;!&ndash;    <bean id="calculatriceController"
           class="com.iut.as2021.controleur.CalculatriceController">
-
-    </bean>
+    </bean>&ndash;&gt;
 
     <bean id="calculatriceManager"
-          class="com.iut.as2021.facade.CalculatriceManager">
+          class="com.iut.as2021.controleur.facade.CalculatriceManager">
         <constructor-arg ref="dao" />
     </bean>
 
-    <!-- Injection de la Dao dans le BankManager par le setter -->
+    &lt;!&ndash; Injection de la Dao dans le BankManager par le setter &ndash;&gt;
     <bean id="dao" class="com.iut.as2021.dao.MySqlDao">
-        <!-- <property name="dao" ref="daoHibernate" /> -->
+        &lt;!&ndash; <property name="dao" ref="daoHibernate" /> &ndash;&gt;
     </bean>
 
-</beans>
+    <bean id="serviceMathResultat" class="com.iut.as2021.controleur.service.implementation.ServiceMathResultatImpl">
+
+    </bean>
+
+</beans>-->
