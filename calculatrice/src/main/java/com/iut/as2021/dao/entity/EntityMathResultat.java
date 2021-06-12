@@ -1,9 +1,12 @@
 package com.iut.as2021.dao.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -16,7 +19,7 @@ public class EntityMathResultat implements Serializable {
     private static final long serialVersionUID = 1L;
 
     public EntityMathResultat(){
-        // for JPA ...
+
     }
 
     @Id
@@ -31,6 +34,7 @@ public class EntityMathResultat implements Serializable {
     private double resultat;
 
     @Column(name = "date")
+    @CreationTimestamp
     private Date date;
 
     @Override
