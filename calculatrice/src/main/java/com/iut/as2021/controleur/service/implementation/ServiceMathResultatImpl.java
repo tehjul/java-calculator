@@ -47,6 +47,7 @@ public class ServiceMathResultatImpl implements IServiceMathResultat {
     public void save(MathResultat mathResultat) {
         logger.info("****** Sauvegarde du MathResultat ******");
         EntityMathResultat entityMathResultat = dto.getDtoMathResultat().unadapt(mathResultat);
+        dao.getDaoMathResult().persist(entityMathResultat);
     }
 
     @Override

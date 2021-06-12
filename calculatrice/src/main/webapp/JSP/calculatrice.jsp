@@ -24,7 +24,7 @@
 ${errorMessage}
 <br>
 
-<h2>Historique :</h2>
+<h2 style="text-align: center">Historique :</h2>
 
 </body>
 </html>

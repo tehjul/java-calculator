@@ -1,5 +1,6 @@
 package com.iut.as2021.controleur.facade;
 
+import com.iut.as2021.controleur.service.implementation.ServiceMathResultatImpl;
 import com.iut.as2021.controleur.service.interfaces.IServiceMathResultat;
 import com.iut.as2021.dao.IDaoMathResult;
 import com.iut.as2021.exceptions.MathsExceptions;
