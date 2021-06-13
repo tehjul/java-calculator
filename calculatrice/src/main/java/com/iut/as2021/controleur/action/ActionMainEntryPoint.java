@@ -3,6 +3,7 @@ package com.iut.as2021.controleur.action;
 import com.iut.as2021.controleur.facade.CalculatriceManager;
 import com.iut.as2021.exceptions.MathsTechnicalExceptions;
 import com.iut.as2021.metier.MathResultat;
+import com.iut.as2021.modele.BoMathResultat;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,8 +29,8 @@ public class ActionMainEntryPoint {
     private CalculatriceManager manager;
 
     @ModelAttribute("mathresultat")
-    public MathResultat initialisationFormulaire() {
-        return new MathResultat();
+    public BoMathResultat initialisationFormulaire() {
+        return new BoMathResultat();
     }
 
     private void reinitModele(Model model) {
@@ -46,15 +47,27 @@ public class ActionMainEntryPoint {
         return MAIN_PAGE;
     }
 
+    @PostMapping("/calculer")
+    public String calculer(@ModelAttribute("mathresultat") @Valid BoMathResultat boMathResultat, Model model){
+        try {
+            boMathResultat.setRes(manager.calculer(boMathResultat.getExpression()));
+            manager.sauverMathResultat(boMathResultat);
+            model.addAttribute("mathresultats", manager.getMathResultats());
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+        return MAIN_PAGE;
+    }
+
     @PostMapping("/ajoutMathResultat")
-    public String saveMathResultat(@ModelAttribute("mathresultat") @Valid MathResultat mathResultat, BindingResult result,
+    public String saveMathResultat(@ModelAttribute("mathresultat") @Valid BoMathResultat boMathResultat, BindingResult result,
                                    Model model) {
         try {
             if (result.hasErrors()) {
                 model.addAttribute("mathresultats", manager.getMathResultats());
                 return MAIN_PAGE;
             } else {
-                manager.sauverMathResultat(mathResultat);
+                manager.sauverMathResultat(boMathResultat);
                 reinitModele(model);
             }
         } catch (MathsTechnicalExceptions e) {

@@ -29,7 +29,7 @@ public class EntityMathResultat implements Serializable {
     private String expression;
 
     @Column(name = "resultat")
-    private double resultat;
+    private String resultat;
 
     @Column(name = "date")
     @CreationTimestamp
@@ -63,11 +63,11 @@ public class EntityMathResultat implements Serializable {
         this.expression = expression;
     }
 
-    public double getResultat() {
+    public String getResultat() {
         return resultat;
     }
 
-    public void setResultat(double resultat) {
+    public void setResultat(String resultat) {
         this.resultat = resultat;
     }
 

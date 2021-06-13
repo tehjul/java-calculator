@@ -6,6 +6,7 @@ import com.iut.as2021.dao.IDaoMathResult;
 import com.iut.as2021.exceptions.MathsExceptions;
 import com.iut.as2021.exceptions.MathsTechnicalExceptions;
 import com.iut.as2021.metier.MathResultat;
+import com.iut.as2021.modele.BoMathResultat;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -32,7 +33,7 @@ public class CalculatriceManager {
         this.dao = dao;
     }*/
 
-    public List<MathResultat> getMathResultats() throws MathsTechnicalExceptions {
+    public List<BoMathResultat> getMathResultats() throws MathsTechnicalExceptions {
         logger.info(" -> Liste des MathResultat demandés par le certification manager");
         try {
             return serviceMathResultat.mathResultatList();
@@ -41,12 +42,12 @@ public class CalculatriceManager {
         }
     }
 
-    public MathResultat getMathResultatById(String id) {
+    public BoMathResultat getMathResultatById(String id) throws MathsExceptions {
         logger.info(" -> Demande des informations mathresultat par le certification manager");
         return serviceMathResultat.getMathResultatById(Integer.valueOf(id));
     }
 
-    public void sauverMathResultat(MathResultat mathResultat) throws MathsTechnicalExceptions {
+    public void sauverMathResultat(BoMathResultat mathResultat) throws MathsTechnicalExceptions {
         logger.info(" -> Sauvegarde du mathresultat courant par le certification manager");
         try {
             serviceMathResultat.save(mathResultat);
@@ -58,6 +59,13 @@ public class CalculatriceManager {
     public void suppressionMathResultatById(String id) {
         logger.info(" -> Suppression du mathresultat demandée par le certification manager");
         serviceMathResultat.supprimerMathResultatById(Integer.valueOf(id));
+    }
+
+    public String calculer(String expression) throws MathsExceptions {
+        logger.info(" -> Calculer par le manager");
+        String res = serviceMathResultat.calculer(expression);
+        logger.info(res);
+        return res;
     }
 
 /*    public String calculer(String expression) throws MathsExceptions {

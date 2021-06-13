@@ -7,6 +7,7 @@ import com.iut.as2021.dao.entity.EntityMathResultat;
 import com.iut.as2021.exceptions.MathsExceptions;
 import com.iut.as2021.exceptions.MathsTechnicalExceptions;
 import com.iut.as2021.metier.MathResultat;
+import com.iut.as2021.modele.BoMathResultat;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,9 +45,9 @@ public class ServiceMathResultatImpl implements IServiceMathResultat {
     }
 
     @Override
-    public void save(MathResultat mathResultat) {
+    public void save(BoMathResultat boMathResultat) {
         logger.info("****** Sauvegarde du MathResultat ******");
-        EntityMathResultat entityMathResultat = dto.getDtoMathResultat().unadapt(mathResultat);
+        EntityMathResultat entityMathResultat = dto.getDtoMathResultat().unadapt(boMathResultat);
         dao.getDaoMathResult().persist(entityMathResultat);
     }
 
@@ -57,18 +58,23 @@ public class ServiceMathResultatImpl implements IServiceMathResultat {
     }
 
     @Override
-    public MathResultat getMathResultatById(Integer id) {
+    public BoMathResultat getMathResultatById(Integer id) throws MathsExceptions {
         logger.info("****** Récupération du MathResultat par son id ******");
         return dto.getDtoMathResultat().adapt(dao.getDaoMathResult().readById(valueOf(id)));
     }
 
     @Override
-    public List<MathResultat> mathResultatList() {
-        List<MathResultat> mathResultats = new ArrayList<>();
+    public List<BoMathResultat> mathResultatList() throws MathsExceptions {
+        List<BoMathResultat> mathResultats = new ArrayList<>();
         for (EntityMathResultat entityMathResultat : dao.getDaoMathResult().getList()) {
             mathResultats.add(dto.getDtoMathResultat().adapt(entityMathResultat));
         }
         logger.info("****** Récupération de la liste des MathResultat ******");
         return mathResultats;
+    }
+
+    @Override
+    public String calculer(String expression) throws MathsExceptions {
+        return String.valueOf((new MathResultat(expression)).calculate());
     }
 }
