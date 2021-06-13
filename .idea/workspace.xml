@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a588c553-43b9-4bca-a4fc-f912da2baec7" name="Default Changelist" comment="Tools Dernière Fonction Parenthèse">
-      <change afterPath="$PROJECT_DIR$/calculatrice/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PocSpringHibernateBootStrap/PocSpringHibernateBootStrap.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/calculatrice/target/classes/com/iut/as2021/dao/IDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/calculatrice/target/classes/com/iut/as2021/dao/IDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calculatrice/target/classes/com/iut/as2021/dao/MySqlDaoFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/calculatrice/target/classes/com/iut/as2021/dao/MySqlDaoFactory.class" afterDir="false" />
-    </list>
+    <list default="true" id="a588c553-43b9-4bca-a4fc-f912da2baec7" name="Default Changelist" comment="Tools Dernière Fonction Parenthèse" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,7 +35,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/calculatrice" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -53,17 +47,6 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Unnamed" type="com.poratu.idea.plugins.tomcat" factoryName="SMART_TOMCAT_FACTORY" nameIsGenerated="true">
       <option name="adminPort" value="8006" />
       <option name="contextPath" value="/CPOA2021_SIBILLE" />
@@ -122,6 +105,7 @@
       <workItem from="1622108838705" duration="2000" />
       <workItem from="1622491702490" duration="41000" />
       <workItem from="1622667763530" duration="120000" />
+      <workItem from="1623619260340" duration="11000" />
     </task>
     <task id="LOCAL-00001" summary="MySqlDaoFactory">
       <created>1620996803715</created>

@@ -55,6 +55,7 @@ public class ActionMainEntryPoint {
             model.addAttribute("mathresultats", manager.getMathResultats());
         } catch (Exception e) {
             logger.error(e.getMessage());
+            model.addAttribute("errorMessage", e.getMessage());
         }
         return MAIN_PAGE;
     }
