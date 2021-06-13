@@ -217,7 +217,7 @@
 <script type="text/javascript">
     $('.btn-calc').click(function(){
         console.log(this.value);
-        document.forms[0].elements.namedItem("input").value += this.value;
+        document.forms[0].elements.namedItem("expression").value += this.value;
     })
     function submitForm(){
         document.forms[0].submit();
