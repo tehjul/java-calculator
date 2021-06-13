@@ -57,7 +57,7 @@
         /* Inset shadow on the screen to create indent */
         .top .screen {
             height: 40px;
-            width: 212px;
+            width: 450px;
 
             float: right;
 
