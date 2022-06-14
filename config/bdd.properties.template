@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- RENAME THIS FILE TO bdd.properties -->
+
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<entry key="bdd">DBNAME</entry>
+<entry key="login">LOGIN</entry>
+<entry key="pass">PASSWORD</entry>
+<entry key="port">PORT</entry>
+<entry key="url">URL</entry>
+</properties>
